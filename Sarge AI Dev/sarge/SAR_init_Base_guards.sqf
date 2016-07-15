@@ -9,12 +9,12 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	http://www.hod-servers.com
+	https://www.hod-servers.com
 
 */
 private["_sizeX","_sizeY","_snipers","_rifleMen","_sizeOfBase","_marker","_markername","_tMark","_flagPoles","_baseLevel","_baseName"];
 
-if (elec_stop_exec == 1) exitWith {};
+if (!isServer) exitWith {};
 
 _flagPoles = nearestObjects [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), ["Exile_Construction_Flag_Static"], 25000];
 

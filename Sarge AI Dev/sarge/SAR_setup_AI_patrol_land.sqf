@@ -9,12 +9,12 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	http://www.hod-servers.com
+	https://www.hod-servers.com
 
 */
 private ["_riflemenlist","_side","_leader_group","_patrol_area_name","_rndpos","_argc","_grouptype","_respawn","_leader_weapon_names","_leader_items","_leader_tools","_soldier_weapon_names","_soldier_items","_soldier_tools","_leaderskills","_sniperskills","_ups_para_list","_sniperlist","_riflemanskills","_vehicles","_error","_vehicles_crews","_leader","_leadername","_snipers","_riflemen","_veh","_veh_setup","_forEachIndex","_groupvehicles","_sniper_weapon_names","_sniper_items","_sniper_tools","_leader_veh_crew","_type","_respawn_time","_ai_type"];
 
-if (elec_stop_exec == 1) exitWith {};
+if (!isServer) exitWith {};
 
 _patrol_area_name = _this select 0;
 
@@ -276,6 +276,24 @@ _ups_para_list spawn UPSMON;
 
 if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: Land vehicle group (%2), side %3 spawned in %1 in a %4, side %5.",_patrol_area_name,_groupvehicles, _side, typeOf _veh, side _veh];
+};
+
+if (SAR_HC) then {
+	{
+		_hcID = getPlayerUID _x;
+		if(_hcID select [0,2] isEqualTo 'HC')then {
+			_SAIS_HC = _group setGroupOwner (owner _x);
+			if (_SAIS_HC) then {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+				};
+			} else {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+				};
+			};
+		};
+	} forEach allPlayers;
 };
 
 _groupvehicles;

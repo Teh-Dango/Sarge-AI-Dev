@@ -9,12 +9,10 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	http://www.hod-servers.com
+	https://www.hod-servers.com
 
 */
 private ["_ai","_aikiller","_aikilled_type","_aikilled_side","_aikilled_group_side","_aikiller_group_side","_aikiller_type","_aikiller_name","_aikiller_side","_respect","_message"];
-
-if (!isServer && hasInterface) exitWith {};
 
 _ai = _this select 0;
 _aikiller = _this select 1;
@@ -39,8 +37,14 @@ if (SAR_HITKILL_DEBUG) then {
 	diag_log format["SAR_HITKILL_DEBUG: AI attacker - Type: %1 Name: %2 Side: %3 Group Side: %4",_aikiller_type,_aikiller_name, _aikiller_side,_aikiller_group_side];
 };
 
-if (isServer) then {
-	if (_aikilled_group_side == SAR_AI_friendly_side) then {
+if(isPlayer _aikiller) then {
+	
+    if (_aikilled_group_side == SAR_AI_friendly_side) then { // hit a friendly AI
+
+		if (SAR_HITKILL_DEBUG) then {
+			diag_log format["SAR_HITKILL_DEBUG: friendly AI was hit by Player %1",_aikiller];
+		};
+		
 		_playerRespect = _aikiller getVariable ["ExileScore", 0];
 		_playerMoney = _aikiller getVariable ["ExileMoney", 0];
 
@@ -54,38 +58,7 @@ if (isServer) then {
 		ExileClientPlayerScore = nil;
 
 		format ["setAccountMoneyAndRespect:%1:%2:%3",_playerMoney ,_playerRespect ,getPlayerUID _aikiller] call ExileServer_system_database_query_fireAndForget;
-	};
-	if (_aikilled_group_side == SAR_AI_unfriendly_side) then {
-		
-		if (isServer) then {
-			_playerRespect = _aikiller getVariable ["ExileScore", 0];
-			_playerMoney = _aikiller getVariable ["ExileMoney", 0];
-
-			_repChange = SAR_surv_kill_value / 20;
-
-			_playerRespect = _playerRespect + _repChange;
-			_aikiller setVariable ["ExileScore",_playerRespect];
-
-			ExileClientPlayerScore = _playerRespect;
-			(owner _aikiller) publicVariableClient "ExileClientPlayerScore";
-			ExileClientPlayerScore = nil;
-
-			format ["setAccountMoneyAndRespect:%1:%2:%3",_playerMoney ,_playerRespect ,getPlayerUID _aikiller] call ExileServer_system_database_query_fireAndForget;
-		};
-	};
-};
-
-if (elec_stop_exec == 1) exitWith {};
-
-_playerUID = getPlayerUID _aikiller;
-if ((!isNull _aikiller) && {(_playerUID != "") && {_aikiller isKindOf "Exile_Unit_Player"}}) then {
 	
-    if (_aikilled_group_side == SAR_AI_friendly_side) then { // hit a friendly AI
-
-		if (SAR_HITKILL_DEBUG) then {
-			diag_log format["SAR_HITKILL_DEBUG: friendly AI was hit by Player %1",_aikiller];
-		};
-
         if ((random 100) < 3) then {
 			_message = format["Sarge AI: Dammit %1! You are firing on a friendly group check your fire!",_aikiller_name];
 			_message remoteExec ["systemChat",0];
@@ -124,5 +97,19 @@ if ((!isNull _aikiller) && {(_playerUID != "") && {_aikiller isKindOf "Exile_Uni
 		if (SAR_HITKILL_DEBUG) then {
 			diag_log format["SAR_HITKILL_DEBUG: Adjusting respect for bandit hit by %2 for %1",_aikiller,(SAR_band_kill_value/10)];
 		};
+		
+		_playerRespect = _aikiller getVariable ["ExileScore", 0];
+		_playerMoney = _aikiller getVariable ["ExileMoney", 0];
+
+		_repChange = SAR_surv_kill_value / 20;
+
+		_playerRespect = _playerRespect + _repChange;
+		_aikiller setVariable ["ExileScore",_playerRespect];
+
+		ExileClientPlayerScore = _playerRespect;
+		(owner _aikiller) publicVariableClient "ExileClientPlayerScore";
+		ExileClientPlayerScore = nil;
+
+		format ["setAccountMoneyAndRespect:%1:%2:%3",_playerMoney ,_playerRespect ,getPlayerUID _aikiller] call ExileServer_system_database_query_fireAndForget;
     };
 };

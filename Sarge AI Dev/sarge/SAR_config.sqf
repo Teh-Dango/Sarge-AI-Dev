@@ -9,10 +9,12 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	http://www.hod-servers.com
+	https://www.hod-servers.com
 
 */
 SAR_version = "2.1.0";
+
+SAR_HC = true;
 
 /* Debug & RPT Settings */
 SAR_DEBUG 			= true; // Set to true for RPT info on AI
@@ -25,6 +27,7 @@ SAR_KILL_MSG 		= true; // Set to true for announcing AI kills to the server
 SAR_dynamic_spawning 				= true;		// Turn dynamic grid spawns on or off
 SAR_Base_Gaurds 					= true;		// Turn AI territory gurads on or off
 SAR_dynamic_group_respawn 			= true;		// Turn dynamic grid AI respawn on or off
+SAR_dynamic_heli_respawn 			= true;		// Turn dynamic grid AI respawn on or off
 SAR_AI_COMBAT_VEHICLE 				= false;	// Turn the option for AI using vehicles when in combat on or off
 SAR_AI_STEAL_VEHICLE 				= false;	// Turn the option for AI using vehicles to reach their destination on or off
 SAR_AI_disable_UPSMON_AI			= false; 	// Turning this off could have unintended consequences
@@ -43,12 +46,16 @@ SAR_DETECT_FROM_VEHICLE_INTERVAL 	= 5;		// How often AI can detect hostile AI & 
 SAR_chance_bandits 			= 75; 	// Chance to spawn 1-100%
 SAR_chance_soldiers 		= 25; 	// Chance to spawn 1-100%
 SAR_chance_survivors 		= 50; 	// Chance to spawn 1-100%
-SAR_max_grps_bandits 		= 2; 	// Total groups per grid
+SAR_max_grps_bandits 		= 4; 	// Total groups per grid
 SAR_max_grps_soldiers 		= 2; 	// Total groups per grid
 SAR_max_grps_survivors 		= 2; 	// Total groups per grid
 SAR_max_grpsize_bandits 	= 2; 	// Size of the group
 SAR_max_grpsize_soldiers 	= 2;	// Size of the group
 SAR_max_grpsize_survivors 	= 2; 	// Size of the group
+
+SAR_chance_band_heli		= 35;
+SAR_chance_surv_heli		= 35;
+SAR_chance_mili_heli		= 35;
 
 SAR_Blacklist = ["TraderZoneSebjan","NorthernBoatTrader","SouthernBoatTrader"];
 

@@ -9,12 +9,12 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	http://www.hod-servers.com
+	https://www.hod-servers.com
 
 */
 private ["_sizeOfBase","_authorizedGateCodes","_authorizedUID","_flagPole","_leadername","_type","_patrol_area_name","_grouptype","_snipers","_riflemen","_action","_side","_leaderList","_riflemenlist","_sniperlist","_rndpos","_group","_leader","_cond","_respawn","_leader_weapon_names","_leader_items","_leader_tools","_soldier_weapon_names","_soldier_items","_soldier_tools","_sniper_weapon_names","_sniper_items","_sniper_tools","_leaderskills","_riflemanskills","_sniperskills","_ups_para_list","_respawn_time","_argc","_ai_type"];
 
-if (elec_stop_exec == 1) exitWith {};
+if (!isServer) exitWith {};
 
 diag_log "Sarge AI System: Territory gaurds are initializing now.";
 
@@ -247,6 +247,24 @@ switch (_action) do {
 
 if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: Territory group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
+};
+
+if (SAR_HC) then {
+	{
+		_hcID = getPlayerUID _x;
+		if(_hcID select [0,2] isEqualTo 'HC')then {
+			_SAIS_HC = _group setGroupOwner (owner _x);
+			if (_SAIS_HC) then {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+				};
+			} else {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+				};
+			};
+		};
+	} forEach allPlayers;
 };
 
 _group;
