@@ -6,7 +6,7 @@ Repackage the sarge folder into a PBO fomat. This requires a PBO manager.
 Place sarge PBO alongside the exile PBOs in the @ExileServer\addons folder.
 
 ### Step 3
-Copy the scripts folder to the root of the mission PBO. This also requires a PBO manager.
+Copy the scripts folder and ratingFix.sqf to the root of the mission PBO. This also requires a PBO manager.
 
 ### Step 4
 Open the config.cpp file in the mission PBO root and search for the word CfgExileCustomCode and make it look like the following: 
@@ -27,7 +27,7 @@ class CfgExileCustomCode
 
 		ExileClient_util_fusRoDah = "myaddon\myfunction.sqf";
 	*/
-	ExileClient_system_rating_balance = "\addons\sarge\ratingFix.sqf";
+	ExileClient_system_rating_balance = "ratingFix.sqf";
 };
 ```
 
