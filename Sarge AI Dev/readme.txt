@@ -12,7 +12,11 @@
 	https://www.hod-servers.com
 
 */
-2.1.6dev Changes
+2.1.7
+	Sarge AI is now in transition to becoming an official addon. The Sarge AI code has been converted and the UPSMON may be converted slowly or replaced completely.
+	The installation instructions have changed drastically compared to the mission PBO version.
+
+2.1.6
 
 	If you are using a headless client and you install the development version you MUST REMOVE ELEC_DETEC VERSION COMPLETELY.
 	This method will autimaticlly detect where the headless client is and use it without and configurations needed.
