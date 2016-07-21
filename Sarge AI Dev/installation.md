@@ -8,6 +8,29 @@ Place sarge PBO alongside the exile PBOs in the @ExileServer\addons folder.
 ### Step 3
 Copy the scripts folder to the root of the mission PBO. This also requires a PBO manager.
 
+### Step 4
+Open the config.cpp file in the mission PBO root and search for the word CfgExileCustomCode and make it look like the following: 
+```html
+class CfgExileCustomCode 
+{
+	/*
+		You can overwrite every single file of our code without touching it.
+		To do that, add the function name you want to overwrite plus the 
+		path to your custom file here. If you wonder how this works, have a
+		look at our bootstrap/fn_preInit.sqf function.
+
+		Simply add the following scheme here:
+
+		<Function Name of Exile> = "<New File Name>";
+
+		Example:
+
+		ExileClient_util_fusRoDah = "myaddon\myfunction.sqf";
+	*/
+	ExileClient_system_rating_balance = "\addons\sarge\ratingFix.sqf";
+};
+```
+
 ### Step 2
 In the init.sqf file in the root of the mission PBO this code to the very top line:
 ```html
