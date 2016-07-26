@@ -12,6 +12,12 @@
 	https://www.hod-servers.com
 
 */
+2.2.2
+	Hotfix for AI stealing vehicles.
+	
+2.2.1
+	-Sarge AI and UPSMON have been converted to an addon format.
+
 2.1.7
 	Sarge AI is now in transition to becoming an official addon. The Sarge AI code has been converted and the UPSMON may be converted slowly or replaced completely.
 	The installation instructions have changed drastically compared to the mission PBO version.
