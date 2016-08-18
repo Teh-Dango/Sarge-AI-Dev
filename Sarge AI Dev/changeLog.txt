@@ -12,11 +12,30 @@
 	https://www.hod-servers.com
 
 */
+
+Rolling Changes
+	[New] Protected Zones
+	- Safe zones will be changed into a zone that is no longer restricted.
+	- Players that attack others will be shot on sight by armed guards.
+	- Feature will be on a toggle to turn this feature on and off by admins.
+	
+	[New] Dynamic Map Support
+	- All maps will be supported by way of dynamic grid creation rather than pre defined grids.
+	
+	[Update] AI Behaviour
+	- AI will have more behavioral options such as walking, holding weapons more relaxed and others to further the realism.
+	- AI leaders will provide medical assistance if they have the materials to provide it.
+	- Players may ask the leader of an AI group to help them and the AI will decide if they should or not.
+	
+2.2.3 Current
+	[Fix] Static infantry now spawn as intended.
+	[Update] UPSMON scripts have been merged with the Sarge PBO.
+	
 2.2.2
-	Hotfix for AI stealing vehicles.
+	[Fix] Hotfix for AI stealing vehicles.
 	
 2.2.1
-	-Sarge AI and UPSMON have been converted to an addon format.
+	[Update] Sarge AI and UPSMON have been converted to an addon format.
 
 2.1.7
 	Sarge AI is now in transition to becoming an official addon. The Sarge AI code has been converted and the UPSMON may be converted slowly or replaced completely.
