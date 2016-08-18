@@ -5,7 +5,7 @@ All code from prior versions of 2.0.0 MUST be removed from the init.sqf and the 
 Place the sarge and upsmon PBOs inside the @ExileServer\addons folder.
 
 ### Step 2
-Open the config.cpp file in the mission PBO root and search for the word CfgExileCustomCode and make it look like the following: 
+Place the ratingFix.sqf inside the mission root then open the config.cpp file in the mission PBO root and search for the word CfgExileCustomCode and make it look like the following:
 ```html
 class CfgExileCustomCode 
 {
