@@ -62,7 +62,11 @@ _leaderskills = call compile format ["SAR_leader_%1_skills",_type];
 _riflemanskills = call compile format ["SAR_soldier_%1_skills",_type];
 _sniperskills = call compile format ["SAR_sniper_%1_skills",_type];
 
-_rndpos = [_patrol_area_name,0,SAR_Blacklist] call UPSMON_pos;
+if (SAR_useBlacklist) then {
+	_rndpos = [_patrol_area_name,0,SAR_Blacklist] call UPSMON_pos;
+} else {
+	_rndpos = [_patrol_area_name] call UPSMON_pos;
+};
 
 _group = createGroup _side;
 
