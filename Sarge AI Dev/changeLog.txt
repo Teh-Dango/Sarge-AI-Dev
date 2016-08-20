@@ -9,7 +9,7 @@
 	Sarge AI System 2.0+
 	Modded for Arma 3: Exile Mod
 	Changes: Dango
-	https://www.hod-servers.com
+	http://www.hod-servers.com
 
 */
 
@@ -31,7 +31,20 @@ Rolling Changes
 	- Static spawns will be created from it's own file rather than out of the map_config files from now on.
 	- Map_config files to adjust dynamic spawns will be called from a single file to make adjustments easier.
 	
-2.2.3 Current
+2.2.4 Current
+
+	[Update] Code Changes
+	- Files have been relocated to more intuitive folders for easier management.
+	- The SAR_config.sqf file has been moved to the preInit file in the init folder.
+	- Sarge AI functions are now prepended with SAR_fnc_ and are compiled like native functions.
+	- The random additional skill boost for AI skills have been set to 0 by default.
+	- Various default values were updated including respect changes, hostility threshold and group sizes/groups per grid.
+	- Cleanup was perfomed on all files to remove unneccessary code and increase efficiency.
+	
+	[Update] Blacklists
+	- Blacklists can now be turned on or off by using a variable in the preInit.
+	
+2.2.3
 	[Fix] Static infantry now spawn as intended.
 	[Update] UPSMON scripts have been merged with the Sarge PBO.
 	
