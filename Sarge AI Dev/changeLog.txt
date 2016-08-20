@@ -44,6 +44,9 @@ Rolling Changes
 	[Update] Blacklists
 	- Blacklists can now be turned on or off by using a variable in the preInit.
 	
+	[Fix] Base Guards
+	- Base guards once again have a toggle action to tell them to be hostile or friendly to players without build rights for the territory.
+	
 2.2.3
 	[Fix] Static infantry now spawn as intended.
 	[Update] UPSMON scripts have been merged with the Sarge PBO.
