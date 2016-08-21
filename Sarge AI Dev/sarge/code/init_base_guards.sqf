@@ -59,7 +59,7 @@ diag_log format["Sarge AI System: Total Territory Locations Query Returned With:
 		_spawnMark setMarkerSize [_sizeX,_sizeY];
 		_spawnMark setMarkeralpha 0;
 
-		_behaviors = ["patrol"]; // Do not change this!
+		_behaviors = ["fortify"];
 		_behavior = _behaviors call BIS_fnc_selectRandom;
 
 		[_x,_spawnMark,2,_snipers,_rifleMen,_behavior,false,5200] call SAR_fnc_AI_guards;

@@ -243,22 +243,4 @@ if (SAR_DEBUG) then {
     diag_log format ["Sarge's AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
 };
 
-if (SAR_HC) then {
-	{
-		_hcID = getPlayerUID _x;
-		if(_hcID select [0,2] isEqualTo 'HC')then {
-			_SAIS_HC = _group setGroupOwner (owner _x);
-			if (_SAIS_HC) then {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
-				};
-			} else {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
-				};
-			};
-		};
-	} forEach allPlayers;
-};
-
 _group;

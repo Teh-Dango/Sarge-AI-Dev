@@ -290,22 +290,4 @@ if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: Land vehicle group (%2), side %3 spawned in %1 in a %4, side %5.",_patrol_area_name,_groupvehicles, _side, typeOf _veh, side _veh];
 };
 
-if (SAR_HC) then {
-	{
-		_hcID = getPlayerUID _x;
-		if(_hcID select [0,2] isEqualTo 'HC')then {
-			_SAIS_HC = _group setGroupOwner (owner _x);
-			if (_SAIS_HC) then {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
-				};
-			} else {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
-				};
-			};
-		};
-	} forEach allPlayers;
-};
-
 _groupvehicles;

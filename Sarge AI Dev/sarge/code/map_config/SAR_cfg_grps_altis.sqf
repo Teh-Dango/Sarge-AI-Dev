@@ -1,7 +1,7 @@
 /*
 	This file is currently under development.
 	Please refer to previous versions if you need a reminder.
-	If you do not hav eprevious versions please post a message on the exile thread for Sarge AI
+	If you do not have previous versions please post a message on the exile thread for Sarge AI
 */
 private ["_type"];
 
@@ -10,8 +10,7 @@ _type = _this select 0;
 if (SAR_dynamic_spawning && (_type == "dynamic")) then {
 
     diag_log format ["Sarge's AI System: Dynamic spawning definition / adjustments started"];
-	
-/* 
+
 	[["max_grps","rnd_grps","max_p_grp"],[[0,0,0],[0,0,0],[0,0,0]],"SAR_area_0_5"] call SAR_AI_mon_upd;// Top left safezone
 	
 	[["max_grps","rnd_grps","max_p_grp"],[[0,0,0],[0,0,0],[0,0,0]],"SAR_area_6_4"] call SAR_AI_mon_upd;// Airbase safezone
@@ -21,7 +20,6 @@ if (SAR_dynamic_spawning && (_type == "dynamic")) then {
 	
 	[["max_grps","rnd_grps","max_p_grp"],[[0,0,0],[0,0,0],[0,0,0]],"SAR_area_10_8"] call SAR_AI_mon_upd;// Top right safezone
 	[["max_grps","rnd_grps","max_p_grp"],[[0,0,0],[0,0,0],[0,0,0]],"SAR_area_11_8"] call SAR_AI_mon_upd;
-*/
 
     diag_log format ["Sarge's AI System: Dynamic spawning definition / adjustments finished"];
 };
@@ -30,7 +28,7 @@ if (_type == "static") then {
 
 	diag_log format["Sarge's AI System: Static spawning area definition started"];
 	
-	_this = createMarker ["SAR_marker_MafiaTraderCity_Outer_Patrol", [14599.7,16797.7,0.101437]];
+	/* _this = createMarker ["SAR_marker_MafiaTraderCity_Outer_Patrol", [14599.7,16797.7,0.101437]];
 	_this setMarkerShape "Ellipse";
 	_this setMarkeralpha 0;
 	_this setMarkerType "Flag";
@@ -44,7 +42,7 @@ if (_type == "static") then {
 	_this setMarkerType "Flag";
 	_this setMarkerBrush "Solid";
 	_this setMarkerSize [100, 100];
-	SAR_marker_MafiaTraderCity_Inner_Patrol = _this;
+	SAR_marker_MafiaTraderCity_Inner_Patrol = _this; */
 	
 	_this = createMarker ["SAR_marker_MafiaTraderCity_Fortify", [14599.7,16797.7,0.101437]];
 	_this setMarkerShape "Ellipse";
@@ -101,17 +99,17 @@ if (_type == "static") then {
 	diag_log format["Sarge's AI System: Static Spawning for infantry patrols started"];
 
 	// These are safe zone guards only! Notice the call --> call SAR_fnc_AI_traders
-	[SAR_marker_MafiaTraderCity_Outer_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Outer_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Outer_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
+	/* [SAR_marker_MafiaTraderCity_Outer_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Outer_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Outer_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders;
 	
-	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,1,0,"patrol",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Inner_Patrol,1,0,0,"patrol",true] call SAR_fnc_AI_traders; */
 	
-	[SAR_marker_MafiaTraderCity_Fortify,1,1,1,"fortify",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Fortify,1,1,0,"fortify",true] call SAR_fnc_AI_traders;
-	[SAR_marker_MafiaTraderCity_Fortify,1,1,0,"fortify",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Fortify,1,0,0,"fortify",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Fortify,1,0,0,"fortify",true] call SAR_fnc_AI_traders;
+	[SAR_marker_MafiaTraderCity_Fortify,1,0,0,"fortify",true] call SAR_fnc_AI_traders;
 	
 	//CAUTION! These are not currently working. DO NOT use these unless you know how to fix the markers!
 	/* [SAR_marker_TraderZoneSilderas,1,2,3,"patrol",true] call SAR_fnc_AI_traders;

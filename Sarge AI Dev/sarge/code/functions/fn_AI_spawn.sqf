@@ -66,6 +66,23 @@ for "_i" from (count _grps_band) to ((_max_grps select 0) - 1) do
             _grps_upd set [count _grps_upd,_group];
             // update AI monitor
             _check = [["grps_band"],[_grps_upd],_markername] call SAR_AI_mon_upd;
+			if (SAR_HC) then {
+				{
+					_hcID = getPlayerUID _x;
+					if(_hcID select [0,2] isEqualTo 'HC')then {
+						_SAIS_HC = _group setGroupOwner (owner _x);
+						if (_SAIS_HC) then {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+							};
+						} else {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+							};
+						};
+					};
+				} forEach allPlayers;
+			};
         };
     };
 };
@@ -85,6 +102,23 @@ for "_i" from (count _grps_sold) to ((_max_grps select 1) - 1) do
             _grps_upd set [count _grps_upd,_group];
             // update AI monitor
             _check = [["grps_sold"],[_grps_upd],_markername] call SAR_AI_mon_upd;
+			if (SAR_HC) then {
+				{
+					_hcID = getPlayerUID _x;
+					if(_hcID select [0,2] isEqualTo 'HC')then {
+						_SAIS_HC = _group setGroupOwner (owner _x);
+						if (_SAIS_HC) then {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+							};
+						} else {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+							};
+						};
+					};
+				} forEach allPlayers;
+			};
         };
     };
 };
@@ -104,6 +138,23 @@ for "_i" from (count _grps_surv) to ((_max_grps select 2) - 1) do
             _grps_upd set [count _grps_upd,_group];
             // update AI monitor
             _check = [["grps_surv"],[_grps_upd],_markername] call SAR_AI_mon_upd;
+			if (SAR_HC) then {
+				{
+					_hcID = getPlayerUID _x;
+					if(_hcID select [0,2] isEqualTo 'HC')then {
+						_SAIS_HC = _group setGroupOwner (owner _x);
+						if (_SAIS_HC) then {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+							};
+						} else {
+							if (SAR_DEBUG) then {
+								diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+							};
+						};
+					};
+				} forEach allPlayers;
+			};
         };
     };
 };
