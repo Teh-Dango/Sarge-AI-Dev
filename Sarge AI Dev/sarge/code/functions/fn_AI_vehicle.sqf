@@ -284,7 +284,7 @@ if (SAR_AI_disable_UPSMON_AI) then {
 	_ups_para_list pushBack ['NOAI'];
 };
 
-_ups_para_list spawn UPSMON;
+_ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
 
 if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: Land vehicle group (%2), side %3 spawned in %1 in a %4, side %5.",_patrol_area_name,_groupvehicles, _side, typeOf _veh, side _veh];

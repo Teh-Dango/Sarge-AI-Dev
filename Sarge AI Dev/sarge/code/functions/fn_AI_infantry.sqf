@@ -222,20 +222,20 @@ switch (_action) do {
     case "FORTIFY":
     {
         _ups_para_list pushBack ["FORTIFY"];
-        _ups_para_list spawn UPSMON;
+        _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
     case "PATROL":
     {
-        _ups_para_list spawn UPSMON;
+        _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
     case "AMBUSH2":
     {
         _ups_para_list pushBack ["AMBUSH"];
-        _ups_para_list spawn UPSMON;
+        _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
 	default
 	{
-		_ups_para_list spawn UPSMON;
+		_ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
 	};
 };
 

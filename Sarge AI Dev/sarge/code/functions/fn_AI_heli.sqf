@@ -219,7 +219,7 @@ if (_respawn) then {
     _ups_para_list pushBack [_respawn_time];
 };
 
-_ups_para_list spawn UPSMON;
+_ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
 
 if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: AI Heli patrol (%2) spawned in: %1.",_patrol_area_name,_groupheli];
