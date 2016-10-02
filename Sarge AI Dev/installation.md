@@ -6,7 +6,7 @@ Tips:
 Place the sarge PBO inside the @ExileServer\addons folder.
 
 ### Step 2
-Place the ratingFix.sqf inside the mission root then open the config.cpp file in the mission root and search for the word CfgExileCustomCode and add this line:
+Place the ExileClient_system_rating_balance.sqf and Exileclient_system_lootmanager_thread_spawn.sqf files with your other override files or inside the mission root then open the config.cpp file in the mission root and search for the word CfgExileCustomCode and add this line:
 ```html
 class CfgExileCustomCode 
 {
@@ -24,7 +24,8 @@ class CfgExileCustomCode
 
 		ExileClient_util_fusRoDah = "myaddon\myfunction.sqf";
 	*/
-	ExileClient_system_rating_balance = "ratingFix.sqf";
+	ExileClient_system_rating_balance = "ExileClient_system_rating_balance.sqf";
+	Exileclient_system_lootmanager_thread_spawn = "Exileclient_system_lootmanager_thread_spawn.sqf";
 };
 ```
 
