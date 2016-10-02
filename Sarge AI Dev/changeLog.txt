@@ -31,8 +31,17 @@ Rolling Changes
 	- Static spawns will be created from it's own file rather than out of the map_config files from now on.
 	- Map_config files to adjust dynamic spawns will be called from a single file to make adjustments easier.
 	
-2.2.4 Current
+2.2.5 Current
+	[New] Animated Crash Sites
+	- Sarge AI will now fly helicopters and crash them providing a dynamic source of military grade loot.
+	- Uses Exile loot system and requires file override provided with download.
+	- Future changes will allow for more granular customization of the way crash sites occur.
 
+	[Update] Installation
+	- The ratingFix.sqf file has been renamed but requires the same override method.
+	- A new override file is provided to allow loot to spawn around crash sites.
+	
+2.2.4 
 	[Update] Code Changes
 	- Files have been relocated to more intuitive folders for easier management.
 	- The SAR_config.sqf file has been moved to the preInit file in the init folder.
