@@ -1,5 +1,5 @@
 // =========================================================================================================
-//  Sarge's AI System: - DayZ AI library
+//  SAR_AI - DayZ AI library
 //  Version: 1.5.0 
 //  Author: Sarge (sarge@krumeich.ch) 
 //
@@ -67,7 +67,7 @@ if (SAR_dynamic_spawning) then {
 
     
 
-    diag_log format["Sarge's AI System: Dynamic spawning definition / adjustments started"];
+    diag_log format["SAR_AI: Dynamic spawning definition / adjustments started"];
      
     // Kamenka, 0 bandit groups, 1 soldier groups, 2 survivor groups - spawn probability ba,so,su - maximum group members ba,so,su
     [["max_grps","rnd_grps","max_p_grp"],[[0,1,2],[0,100,100],[0,2,1]],"SAR_area_0_0"] call SAR_AI_mon_upd; 
@@ -129,7 +129,7 @@ if (SAR_dynamic_spawning) then {
     // test south of lopatino, 1 bandit groups, 0 soldier groups, 0 survivor groups - spawn probability ba,so,su - maximum group members ba,so,su
     [["max_grps","rnd_grps","max_p_grp"],[[1,0,0],[100,0,0],[6,0,0]],"SAR_area_0_3"] call SAR_AI_mon_upd; 
 
-    diag_log format["Sarge's AI System: Dynamic spawning definition / adjustments finished"];
+    diag_log format["SAR_AI: Dynamic spawning definition / adjustments finished"];
 
     
     
@@ -138,7 +138,7 @@ if (SAR_dynamic_spawning) then {
 // Definition of area markers for static spawns
 //
 
-diag_log format["Sarge's AI System: Static spawning area definition started"];
+diag_log format["SAR_AI: Static spawning area definition started"];
 
 // soutcoast, heli patrol area
 _this = createMarker ["SAR_marker_helipatrol_southcoast", [7997.2837, 2687.6707]];
@@ -195,7 +195,7 @@ _this setMarkerBrush "Solid";
 _this setMarkerSize [10, 10];
 SAR_marker_DEBUG_devilscastle = _this;
 
-diag_log format["Sarge's AI System: Static spawning area definition finished"];
+diag_log format["SAR_AI: Static spawning area definition finished"];
 
 // ----------------------------------------------------------------------------------------
 // End of area marker definition section
@@ -206,7 +206,7 @@ diag_log format["Sarge's AI System: Static spawning area definition finished"];
 // Static, predefined heli patrol areas with configurable units
 //---------------------------------------------------------------------------------
 //
-//      format: [areamarker,type_of_group,(respawn),(respawntime)] call Sarge's AI System:;
+//      format: [areamarker,type_of_group,(respawn),(respawntime)] call SAR_AI;
 //
 //      areamarker          : Name of an area, as defined in your area definitions (MUST NOT BE similar to SAR_area_ ! THIS IS IMPORTANT!)
 //      type_of_group       : 1 = military, 2 = survivors, 3 = bandits
@@ -222,52 +222,52 @@ diag_log format["Sarge's AI System: Static spawning area definition finished"];
 //
 //              A) military air group patrolling, respawning, respawn time = default configured time, using default randomized vehicles  
 //
-//                      [SAR_marker_DEBUG,1,true] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,1,true] call SAR_AI_heli; 
 //
 //              B) bandit air group patrolling, not respawning, 
 //
-//                      [SAR_marker_DEBUG,3] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,3] call SAR_AI_heli; 
 //
 //              C) survivor air group patrolling, respawning, respawn time = 120 seconds  
 //
-//                      [SAR_marker_DEBUG,true,120] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,true,120] call SAR_AI_heli; 
 //
 //---------------------------------------------------------------------------------
-diag_log format["Sarge's AI System: Static Spawning for Helicopter patrols started"];
+diag_log format["SAR_AI: Static Spawning for Helicopter patrols started"];
 
 //
 // define your static air patrols here
 //
 
  //Heli Patrol NWAF
-[SAR_marker_helipatrol_nwaf,1,true] call Sarge's AI System:;
+[SAR_marker_helipatrol_nwaf,1,true] call SAR_AI_heli;
 
 //Heli Patrol NEAF
-[SAR_marker_helipatrol_neaf,1,true] call Sarge's AI System:;
+[SAR_marker_helipatrol_neaf,1,true] call SAR_AI_heli;
 
 // Heli patrol south coast
-[SAR_marker_helipatrol_southcoast,1,true] call Sarge's AI System:;
-[SAR_marker_helipatrol_southcoast,1,true] call Sarge's AI System:;
+[SAR_marker_helipatrol_southcoast,1,true] call SAR_AI_heli;
+[SAR_marker_helipatrol_southcoast,1,true] call SAR_AI_heli;
 
 // heli patrol east coast
-[SAR_marker_helipatrol_eastcoast,1,true] call Sarge's AI System:;
-[SAR_marker_helipatrol_eastcoast,1,true] call Sarge's AI System:;
+[SAR_marker_helipatrol_eastcoast,1,true] call SAR_AI_heli;
+[SAR_marker_helipatrol_eastcoast,1,true] call SAR_AI_heli;
 
 
 // example war scenario in the northwest. Comment OUT after having had a look at it!
-[SAR_marker_DEBUG_veh,1,true,30] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,1,true,30] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,3,true,30] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,3,true,30] call Sarge's AI System:;
+[SAR_marker_DEBUG_veh,1,true,30] call SAR_AI_heli;
+[SAR_marker_DEBUG_veh,1,true,30] call SAR_AI_heli;
+[SAR_marker_DEBUG_veh,3,true,30] call SAR_AI_heli;
+[SAR_marker_DEBUG_veh,3,true,30] call SAR_AI_heli;
 
 
-diag_log format["Sarge's AI System: Static Spawning for Helicopter patrols finished"];
+diag_log format["SAR_AI: Static Spawning for Helicopter patrols finished"];
 
 //---------------------------------------------------------------------------------
 // Static, predefined infantry patrols in defined areas with configurable units
 //---------------------------------------------------------------------------------
 // 
-//      format: [areamarker,type_of_group,number_of_snipers,number_of_riflemen,action_to_do,(respawn),(respawntime)] call Sarge's AI System:;
+//      format: [areamarker,type_of_group,number_of_snipers,number_of_riflemen,action_to_do,(respawn),(respawntime)] call SAR_AI;
 //
 //      areamarker          : Name of an area, as defined in your area definitions (MUST NOT BE similar to SAR_area_ ! THIS IS IMPORTANT!)
 //      type_of_group       : 1 = military, 2 = survivors, 3 = bandits
@@ -287,40 +287,40 @@ diag_log format["Sarge's AI System: Static Spawning for Helicopter patrols finis
 //
 //              A) military group patrolling, with 1 leader and 1 rifleman, respawning, respawn time = default configured time  
 //
-//                      [SAR_marker_DEBUG,1,0,1,"patrol",true] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,1,0,1,"patrol",true] call SAR_AI; 
 //
 //              B) bandit group patrolling, with 1 leader, 2 snipers and 1 rifleman, respawning, respawn time = 30 seconds  
 //
-//                      [SAR_marker_DEBUG,3,2,1,"patrol",true,30] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,3,2,1,"patrol",true,30] call SAR_AI; 
 //
 //              C) survivor group fortifying, with 1 leader, 1 sniper and 3 riflemen, not respawning
 //
-//                      [SAR_marker_DEBUG,2,1,3,"fortify",false] call Sarge's AI System:; 
+//                      [SAR_marker_DEBUG,2,1,3,"fortify",false] call SAR_AI; 
 //
 //---------------------------------------------------------------------------------
 
-diag_log format["Sarge's AI System: Static Spawning for infantry patrols started"];
+diag_log format["SAR_AI: Static Spawning for infantry patrols started"];
 
 //
 // define your static infantry patrols here
 //
 
-[SAR_marker_DEBUG_devilscastle,1,0,6,"fortify",true] call Sarge's AI System:;
+[SAR_marker_DEBUG_devilscastle,1,0,6,"fortify",true] call SAR_AI;
 
 // example war scenario in the northwest. Comment OUT after having had a look at it!
-[SAR_marker_DEBUG_veh,1,0,9,"patrol",true] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,2,0,9,"patrol",true] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,3,0,9,"patrol",true] call Sarge's AI System:;
-[SAR_marker_DEBUG_veh,3,0,9,"patrol",true] call Sarge's AI System:;
+[SAR_marker_DEBUG_veh,1,0,9,"patrol",true] call SAR_AI;
+[SAR_marker_DEBUG_veh,2,0,9,"patrol",true] call SAR_AI;
+[SAR_marker_DEBUG_veh,3,0,9,"patrol",true] call SAR_AI;
+[SAR_marker_DEBUG_veh,3,0,9,"patrol",true] call SAR_AI;
  
 
-diag_log format["Sarge's AI System: Static Spawning for infantry patrols finished"];
+diag_log format["SAR_AI: Static Spawning for infantry patrols finished"];
 
 // -------------------------------------------------------------------------------------
 //
 //  Static spawns for vehicle groups
 //
-//      format: [areamarker,type_of_group,vehicle array,crew array,(respawn),(respawntime)] call SAR_fnc_AI_vehicle;
+//      format: [areamarker,type_of_group,vehicle array,crew array,(respawn),(respawntime)] call SAR_AI_land;
 //
 //
 //      areamarker      : Name of an area, as defined in your area definitions
@@ -345,7 +345,7 @@ diag_log format["Sarge's AI System: Static Spawning for infantry patrols finishe
             ["UAZ_Unarmed_TK_EP1"],             // used vehicles
             [[1,1,1]],                          // Vehicle initial crew
             false                               // if this group should respawn or not
-        ] call SAR_fnc_AI_vehicle;
+        ] call SAR_AI_land;
 */
 // 
 //      B) This will spawn an AI group with 1 vehicle, 3 AI in the UAZ, and this group will respawn after 60 seconds
@@ -357,11 +357,11 @@ diag_log format["Sarge's AI System: Static Spawning for infantry patrols finishe
             [[1,1,1]],                          // Vehicle initial crews
             true,                               // if this group should respawn or not
             60                                  // waittime until this group will respawn            
-        ] call SAR_fnc_AI_vehicle;
+        ] call SAR_AI_land;
 */
 //
 // -------------------------------------------------------------------------------------
-diag_log format["Sarge's AI System: Static Spawning for vehicle patrols started"];
+diag_log format["SAR_AI: Static Spawning for vehicle patrols started"];
 
 //
 // define your static vehicle patrols here
@@ -375,7 +375,7 @@ diag_log format["Sarge's AI System: Static Spawning for vehicle patrols started"
     [[1,1,1],[0,1,1],[0,1,1],[0,1,1]],                              // Vehicle initial crew
     true,                                           // if this group should respawn or not
     10
-] call SAR_fnc_AI_vehicle;
+] call SAR_AI_land;
 
 [
     SAR_marker_DEBUG_veh,                   // Name of the area that the vehicle patrol will spawn in
@@ -384,7 +384,7 @@ diag_log format["Sarge's AI System: Static Spawning for vehicle patrols started"
     [[1,1,0],[0,1,1],[0,1,1],[0,1,1]],      // Vehicle initial crew
     true,                                   // if this group should respawn or not
     60                                      // waittime until this group will respawn
-] call SAR_fnc_AI_vehicle;
+] call SAR_AI_land;
 
 [
     SAR_marker_DEBUG_veh,             // Name of the area that the vehicle patrol will spawn in
@@ -393,8 +393,8 @@ diag_log format["Sarge's AI System: Static Spawning for vehicle patrols started"
     [[1,1,0]],                          // Vehicle initial crew
     true,                               // if this group should respawn or not
     60                                  // waittime until this group will respawn
-] call SAR_fnc_AI_vehicle;
+] call SAR_AI_land;
 
-diag_log format["Sarge's AI System: Static Spawning for vehicle patrols finished"];
+diag_log format["SAR_AI: Static Spawning for vehicle patrols finished"];
 // ---- end of configuration area ----
 

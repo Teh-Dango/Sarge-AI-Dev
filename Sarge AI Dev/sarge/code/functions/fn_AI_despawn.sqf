@@ -35,7 +35,7 @@ sleep _timeout;
 if !(triggerActivated _trigger) then {
 
     if (SAR_DEBUG) then {
-        diag_log format["Sarge's AI System: Despawning groups in: %1", _markername];
+        diag_log format["Sarge AI System: Despawning groups in: %1", _markername];
     };
 
     if (SAR_EXTREME_DEBUG) then {

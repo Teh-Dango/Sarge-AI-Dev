@@ -41,10 +41,10 @@ _ai_type = _ai getVariable ["SAR_AI_type",""];
 _ai_killer_type = _aikiller getVariable ["SAR_AI_type",""];
 
 // retrieve experience value from the killed AI
-_ai_xp = _ai getVariable["SAR_AI_experience",0];
+_ai_xp = _ai getVariable ["SAR_AI_experience",0];
 
 // retrieve experience value from the killing AI
-_ai_killer_xp = _aikiller getVariable["SAR_AI_experience",0];
+_ai_killer_xp = _aikiller getVariable ["SAR_AI_experience",0];
 
 if (_ai_xp < SAR_AI_XP_LVL_2) then {
     _ai_xp_type = SAR_AI_XP_NAME_1;
@@ -73,10 +73,12 @@ if (SAR_KILL_MSG) then {
 		_message = format["Sarge AI: A %3 %2 was killed by Player: %1",_aikiller_name,_ai_type,_ai_xp_type];
 		_message remoteExec ["systemChat",0];
 	};
-	if (_ai_xp >= SAR_AI_XP_LVL_2) then {
-		_message = format["Sarge AI: A %3 %2 was killed by a %3 %4!",_ai_xp_type,_ai_type,_ai_killer_xp_type,_ai_killer_type];
-		diag_log _message;
-		_message remoteExec ["systemChat",0];
+	if (!(isPlayer _aikiller) && !(isNull _aikiller) && (alive _aikiller)) then {
+		if (_ai_xp >= SAR_AI_XP_LVL_2) then {
+			_message = format["Sarge AI: A %3 %2 was killed by a %3 %4!",_ai_xp_type,_ai_type,_ai_killer_xp_type,_ai_killer_type];
+			diag_log _message;
+			_message remoteExec ["systemChat",0];
+		};
 	};
 };
 
@@ -85,11 +87,11 @@ if (SAR_HITKILL_DEBUG) then {
 	diag_log format["SAR_HITKILL_DEBUG: AI Killer - Type: %1 Name: %2 Side: %3 Group Side: %4",_aikiller_type,_aikiller_name, _aikiller_side,_aikiller_group_side];
 };
 
-if((alive _aiKiller) && (isPlayer _aikiller)) then {
+if ((alive _aiKiller) && (isPlayer _aikiller)) then {
     if (_aikilled_group_side == SAR_AI_friendly_side) then {
 
 		if (SAR_HITKILL_DEBUG) then {
-			diag_log format ["Sarge's AI System: Adjusting respect for survivor or soldier kill by %2 for %1",_aikiller_name,SAR_surv_kill_value];
+			diag_log format ["Sarge AI System: Adjusting respect for survivor or soldier kill by %2 for %1",_aikiller_name,SAR_surv_kill_value];
 		};
 		if (SAR_log_AI_kills) then {
 			_friendlyCount = profileNamespace getVariable["SAR_FRIENDLY_KILLS",0];
@@ -99,7 +101,7 @@ if((alive _aiKiller) && (isPlayer _aikiller)) then {
 		_playerRespect = _aikiller getVariable ["ExileScore", 0];
 		_playerMoney = _aikiller getVariable ["ExileMoney", 0];
 	
-		_repChange = SAR_surv_kill_value / 10;
+		_repChange = SAR_surv_kill_value;
 
 		_playerRespect = _playerRespect - _repChange;
 		_aikiller setVariable ["ExileScore",_playerRespect];
@@ -126,7 +128,7 @@ if((alive _aiKiller) && (isPlayer _aikiller)) then {
     if (_aikilled_group_side == SAR_AI_unfriendly_side) then {
 
 		if (SAR_HITKILL_DEBUG) then {
-			diag_log format ["Sarge's AI System: Adjusting respect for bandit kill by %2 for %1",_aikiller_name,SAR_band_kill_value];
+			diag_log format ["Sarge AI System: Adjusting respect for bandit kill by %2 for %1",_aikiller_name,SAR_band_kill_value];
 		};
 		if(SAR_log_AI_kills) then {
 			_hostileCount = profileNamespace getVariable["SAR_HOSTILE_KILLS",0];
@@ -136,7 +138,7 @@ if((alive _aiKiller) && (isPlayer _aikiller)) then {
 		_playerRespect = _aikiller getVariable ["ExileScore", 0];
 		_playerMoney = _aikiller getVariable ["ExileMoney", 0];
 
-		_repChange = SAR_band_kill_value / 10;
+		_repChange = SAR_band_kill_value;
 
 		_playerRespect = _playerRespect + _repChange;
 		_aikiller setVariable ["ExileScore",_playerRespect];
@@ -202,7 +204,6 @@ if((alive _aiKiller) && (isPlayer _aikiller)) then {
 
                     _message = format["Sarge AI: A %1 %2 was promoted!",_ai_killer_xp_type,_ai_killer_type];
                     _message remoteExec ["systemChat",0];
-
 
                     // restore health to full
                     _aikiller setDamage 0;

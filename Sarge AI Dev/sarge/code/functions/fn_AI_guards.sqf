@@ -83,8 +83,6 @@ _leader_tools = ["leader",_type] call SAR_unit_loadout_tools;
 
 [_leader,_leader_weapon_names,_leader_items,_leader_tools] call SAR_unit_loadout;
 
-if (_side == SAR_AI_unfriendly_side) then {removeHeadgear _this; _this addHeadGear (["H_Shemag_olive","H_Shemag_olive_hs","H_ShemagOpen_khk","H_ShemagOpen_tan"] call BIS_fnc_selectRandom);};
-
 [_leader] spawn SAR_fnc_AI_trace_base;
 _leader setIdentity "id_SAR_sold_lead";
 [_leader] spawn SAR_fnc_AI_refresh;
@@ -112,16 +110,9 @@ _leader setVariable ["SAR_AI_experience",0,false];
 _leader setVariable ["SAR_FLAG_FRIENDLY", _authorizedUID, true];
 _leader setVariable ["ATTACK_ALL", false, true];
 
-// set behaviour & speedmode
-_leader setspeedmode "FULL";
-_leader setBehaviour "AWARE";
-
 _sniperlist = call compile format ["SAR_sniper_%1_list",_type];
-
-// create crew
 for "_i" from 0 to (_snipers - 1) do
 {
-    
 	_this = _group createunit [_sniperlist call BIS_fnc_selectRandom, [getPosATL _flagPole,1,_sizeOfBase,5,0,10,0] call BIS_fnc_findSafePos, [], 0.5, "CAN_COLLIDE"];
 
     _sniper_weapon_names = ["sniper",_type] call SAR_unit_loadout_weapons;
@@ -129,8 +120,6 @@ for "_i" from 0 to (_snipers - 1) do
     _sniper_tools = ["sniper",_type] call SAR_unit_loadout_tools;
 
     [_this,_sniper_weapon_names,_sniper_items,_sniper_tools] call SAR_unit_loadout;
-
-	if (_side == SAR_AI_unfriendly_side) then {removeHeadgear _this; _this addHeadGear (["H_Shemag_olive","H_Shemag_olive_hs","H_ShemagOpen_khk","H_ShemagOpen_tan"] call BIS_fnc_selectRandom);};
 	
 	[_this] spawn SAR_fnc_AI_trace_base;
 	_this setIdentity "id_SAR";
@@ -162,7 +151,6 @@ for "_i" from 0 to (_snipers - 1) do
 };
 
 _riflemenlist = call compile format ["SAR_soldier_%1_list",_type];
-
 for "_i" from 0 to (_riflemen - 1) do
 {
 	_this = _group createunit [_riflemenlist call BIS_fnc_selectRandom, [getPosATL _flagPole,1,_sizeOfBase,5,0,10,0] call BIS_fnc_findSafePos, [], 0.5, "CAN_COLLIDE"];
@@ -254,7 +242,7 @@ switch (_action) do {
 };
 
 if(SAR_DEBUG) then {
-    diag_log format["Sarge's AI System: Territory group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
+    diag_log format["Sarge AI System: Territory group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
 };
 
 if (SAR_HC) then {
@@ -264,11 +252,11 @@ if (SAR_HC) then {
 			_SAIS_HC = _group setGroupOwner (owner _x);
 			if (_SAIS_HC) then {
 				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+					diag_log format ["Sarge AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
 				};
 			} else {
 				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+					diag_log format ["Sarge AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
 				};
 			};
 		};

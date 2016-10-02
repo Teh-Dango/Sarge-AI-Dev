@@ -65,7 +65,12 @@ if (SAR_useBlacklist) then {
 _group = createGroup _side;
 
 // create leader of the group
-_leader = _group createunit [_leaderList call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
+_leader = _group createunit [_leaderList call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+
+_leader setVariable ["SAR_protect",true,true];
+
+[_leader] joinSilent _group;
+sleep 1;
 
 _leader_weapon_names = ["leader",_type] call SAR_unit_loadout_weapons;
 _leader_items = ["leader",_type] call SAR_unit_loadout_items;
@@ -89,8 +94,6 @@ _leader addEventHandler ["HandleDamage",{if (_this select 1!="") then {_unit=_th
 //["I need assistance!",{"sarge\SAR_interact.sqf","",1,true,true,"","(side _target != EAST)"}]
 //_leader addaction ["Help Me!", {"sarge\SAR_interact.sqf" remoteExec [ "BIS_fnc_execVM",0]}]; 
 
-[_leader] join _group;
-
 // set skills of the leader
 {
     _leader setskill [_x select 0,(_x select 1 +(floor(random 2) * (_x select 2)))];
@@ -109,8 +112,8 @@ _leader setVariable ["SAR_AI_type",_ai_type + " Leader",false];
 _leader setVariable ["SAR_AI_experience",0,false];
 
 // set behaviour & speedmode
-_leader setspeedmode "FULL";
-_leader setBehaviour "AWARE";
+/* _leader setspeedmode "FULL";
+_leader setBehaviour "AWARE"; */
 
 // Establish siper unit type and skills
 _sniperlist = call compile format ["SAR_sniper_%1_list", _type];
@@ -119,7 +122,10 @@ _sniperskills = call compile format ["SAR_sniper_%1_skills", _type];
 // create crew
 for "_i" from 0 to (_snipers - 1) do
 {
-	_this = _group createunit [_sniperlist call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
+	_this = _group createunit [_sniperlist call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "NONE"];
+	
+	[_this] joinSilent _group;
+	sleep 1;
 	
 	_sniper_weapon_names = ["sniper",_type] call SAR_unit_loadout_weapons;
 	_sniper_items = ["sniper",_type] call SAR_unit_loadout_items;
@@ -137,8 +143,6 @@ for "_i" from 0 to (_snipers - 1) do
 	_this addMPEventHandler ["MPHit", {Null = _this spawn SAR_fnc_AI_hit;}];
 
 	_this addEventHandler ["HandleDamage",{if (_this select 1!="") then {_unit=_this select 0;damage _unit+((_this select 2)-damage _unit)*1}}];    
-	
-	[_this] join _group;
 	
 	// set skills
 	{
@@ -158,7 +162,10 @@ _riflemanskills = call compile format ["SAR_soldier_%1_skills", _type];
 
 for "_i" from 0 to (_riflemen - 1) do
 {
-    _this = _group createunit [_riflemenlist call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
+    _this = _group createunit [_riflemenlist call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+
+	[_this] joinSilent _group;
+	sleep 1;
 
     _soldier_items = ["rifleman",_type] call SAR_unit_loadout_items;
     _soldier_tools = ["rifleman",_type] call SAR_unit_loadout_tools;
@@ -177,8 +184,6 @@ for "_i" from 0 to (_riflemen - 1) do
 
 	_this addEventHandler ["HandleDamage",{if (_this select 1!="") then {_unit=_this select 0;damage _unit+((_this select 2)-damage _unit)*1}}];    
 	
-    [_this] join _group;
-
     // set skills
     {
         _this setskill [_x select 0,(_x select 1 +(floor(random 2) * (_x select 2)))];
@@ -228,7 +233,7 @@ switch (_action) do {
     {
         _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
-    case "AMBUSH2":
+    case "AMBUSH":
     {
         _ups_para_list pushBack ["AMBUSH"];
         _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
@@ -240,7 +245,25 @@ switch (_action) do {
 };
 
 if (SAR_DEBUG) then {
-    diag_log format ["Sarge's AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
+    diag_log format ["Sarge AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
+};
+
+if (SAR_HC) then {
+	{
+		_hcID = getPlayerUID _x;
+		if(_hcID select [0,2] isEqualTo 'HC')then {
+			_SAIS_HC = _group setGroupOwner (owner _x);
+			if (_SAIS_HC) then {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+				};
+			} else {
+				if (SAR_DEBUG) then {
+					diag_log format ["Sarge AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
+				};
+			};
+		};
+	} forEach allPlayers;
 };
 
 _group;

@@ -89,7 +89,7 @@ _groupheli setVariable ["SAR_protect",true,true];
 // create the vehicle
 _heli = createVehicle [(SAR_heli_type call BIS_fnc_selectRandom), [(_rndpos select 0) + 10, _rndpos select 1, 80], [], 0, "FLY"];
 _heli setFuel 1;
-_heli setVariable ["Sarge",1,true];
+_heli setVariable ["SAR_protect",true,true];
 _heli engineon true;
 _heli setVehicleAmmo 1;
 
@@ -222,7 +222,7 @@ if (_respawn) then {
 _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
 
 if(SAR_DEBUG) then {
-    diag_log format["Sarge's AI System: AI Heli patrol (%2) spawned in: %1.",_patrol_area_name,_groupheli];
+    diag_log format["Sarge AI System: AI Heli patrol (%2) spawned in: %1.",_patrol_area_name,_groupheli];
 };
 
 _groupheli;
