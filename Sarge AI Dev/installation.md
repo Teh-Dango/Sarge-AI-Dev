@@ -29,6 +29,15 @@ class CfgExileCustomCode
 };
 ```
 
+### Step3
+In the exile server config.cpp add the following inside the Buildings class
+```html
+	class Land_UWreck_Heli_Attack_02_F
+	{
+		table = "Military";
+		positions[] = {{-1.17383, 8.0918, -2.79785}, {2.92285, -9.17188, -2.77692}, {3.7041, 0.40918, -2.84418}, {-0.260742, -9.69434, -2.67627}, {2.69434, 7.49609, -2.72632}, {1.69922, 10.1006, -2.71313}, {6.04102, 1.19434, -2.90607}, {4.15332, -3.63574, -2.86328}, {0.224609, 4.14941, -2.80768}, {-1.55957, 1.5957, -2.79156}, {-3.49121, 5.05664, -2.82739}, {2.37891, -5.42676, -2.78564}, {-4.07129, -2.78711, -2.71198}, {-1.16895, -6.24023, -2.71613}, {6.19141, -1.70313, -2.93707}, {2.27148, 3.82129, -2.76392}, {-0.84082, -0.824219, -2.7915}, {-4.71973, 1.80469, -2.78058}, {2.14648, -1.65723, -2.79163}};
+	};
+```
 ### Step 3 InfiniStar (Optional)
 In the EXILE_AH.sqf file do a search for rating. This should be line 793 and should look like the below. Remove this line:
 ```html
