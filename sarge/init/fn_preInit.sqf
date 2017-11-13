@@ -102,13 +102,15 @@ SAR_heli_type = ["O_Heli_Light_02_unarmed_EPOCH"];
 // ---------------------------------------------------------------------
 
 // Leader lodout options
-SAR_sold_leader_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_sold_leader_uniform = [["U_I_C_Soldier_Para_1_F","U_I_C_Soldier_Para_2_F","U_I_C_Soldier_Para_3_F","U_I_C_Soldier_Para_4_F"],["U_Camo_uniform"]];
-SAR_sold_leader_primary = ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
-SAR_sold_leader_pistol 	= [];
-SAR_sold_leader_items 	= [];
-SAR_sold_leader_tools 	= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
-SAR_sold_leader_skills 	= [
+SAR_sold_leader_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_sold_leader_uniform 	= [["U_I_C_Soldier_Para_1_F","U_I_C_Soldier_Para_2_F","U_I_C_Soldier_Para_3_F","U_I_C_Soldier_Para_4_F"],["U_Camo_uniform"]];
+SAR_sold_leader_vest 		= [];
+SAR_sold_leader_backpack 	= [];
+SAR_sold_leader_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
+SAR_sold_leader_pistol 		= [];
+SAR_sold_leader_items 		= [];
+SAR_sold_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
+SAR_sold_leader_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
@@ -124,6 +126,8 @@ SAR_sold_leader_skills 	= [
 // Riflemen loadout options
 SAR_sold_rifleman_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
 SAR_sold_rifleman_uniform 	= [["U_I_C_Soldier_Para_1_F","U_I_C_Soldier_Para_2_F","U_I_C_Soldier_Para_3_F","U_I_C_Soldier_Para_4_F"],["U_Camo_uniform"]];
+SAR_sold_rifleman_vest 		= [];
+SAR_sold_rifleman_backpack 	= [];
 SAR_sold_rifleman_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
 SAR_sold_rifleman_pistol 	= [];
 SAR_sold_rifleman_items 	= [];
@@ -143,13 +147,15 @@ SAR_sold_rifleman_skills  	= [
 ];
 
 // Sniper loadout options
-SAR_sold_sniper_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_sold_sniper_uniform = [["U_O_FullGhillie_lsh","U_O_FullGhillie_sard","U_O_FullGhillie_ard","U_I_FullGhillie_lsh","U_I_FullGhillie_sard","U_I_FullGhillie_ard"],["U_ghillie1_uniform","U_ghillie2_uniform","U_ghillie3_uniform"]];
-SAR_sold_sniper_primary = ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
-SAR_sold_sniper_pistol 	= [];
-SAR_sold_sniper_items 	= [];
-SAR_sold_sniper_tools 	= [["ItemMap",50],["ItemCompass",30]];
-SAR_sold_sniper_skills 	= [
+SAR_sold_sniper_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_sold_sniper_uniform 	= [["U_O_FullGhillie_lsh","U_O_FullGhillie_sard","U_O_FullGhillie_ard","U_I_FullGhillie_lsh","U_I_FullGhillie_sard","U_I_FullGhillie_ard"],["U_ghillie1_uniform","U_ghillie2_uniform","U_ghillie3_uniform"]];
+SAR_sold_sniper_vest		= [];
+SAR_sold_sniper_backpack	= [];
+SAR_sold_sniper_primary 	= ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
+SAR_sold_sniper_pistol 		= [];
+SAR_sold_sniper_items 		= [];
+SAR_sold_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
+SAR_sold_sniper_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
@@ -167,13 +173,15 @@ SAR_sold_sniper_skills 	= [
 // ---------------------------------------------------------------------
 
 // Leader lodout options
-SAR_surv_leader_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_surv_leader_uniform = [["U_C_Mechanic_01_F","U_C_IDAP_Man_Jeans_F","U_C_Man_casual_1_F","U_C_Man_casual_2_F","U_C_Man_casual_3_F","U_C_Journalist","U_C_HunterBody_grn"],["U_CamoBlue_uniform","U_CamoBrn_uniform"]];
-SAR_surv_leader_primary = ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
-SAR_surv_leader_pistol 	= [];
-SAR_surv_leader_items 	= [];
-SAR_surv_leader_tools 	= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
-SAR_surv_leader_skills 	= [
+SAR_surv_leader_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_surv_leader_uniform 	= [["U_C_Mechanic_01_F","U_C_IDAP_Man_Jeans_F","U_C_Man_casual_1_F","U_C_Man_casual_2_F","U_C_Man_casual_3_F","U_C_Journalist","U_C_HunterBody_grn"],["U_CamoBlue_uniform","U_CamoBrn_uniform"]];
+SAR_surv_leader_vest		= [];
+SAR_surv_leader_backpack	= [];
+SAR_surv_leader_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
+SAR_surv_leader_pistol 		= [];
+SAR_surv_leader_items 		= [];
+SAR_surv_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
+SAR_surv_leader_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
@@ -189,6 +197,8 @@ SAR_surv_leader_skills 	= [
 // Riflemen loadout options
 SAR_surv_rifleman_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
 SAR_surv_rifleman_uniform 	= [["U_C_Mechanic_01_F","U_C_IDAP_Man_Jeans_F","U_C_Man_casual_1_F","U_C_Man_casual_2_F","U_C_Man_casual_3_F","U_C_Journalist","U_C_HunterBody_grn"],["U_CamoBlue_uniform","U_CamoBrn_uniform"]];
+SAR_surv_rifleman_vest		= [];
+SAR_surv_rifleman_backpack	= [];
 SAR_surv_rifleman_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
 SAR_surv_rifleman_pistol 	= [];
 SAR_surv_rifleman_items 	= [];
@@ -207,13 +217,15 @@ SAR_surv_rifleman_skills 	= [
 ];
 
 // Sniper loadout options
-SAR_surv_sniper_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_surv_sniper_uniform = [["U_C_Mechanic_01_F","U_C_IDAP_Man_Jeans_F","U_C_Man_casual_1_F","U_C_Man_casual_2_F","U_C_Man_casual_3_F","U_C_Journalist","U_C_HunterBody_grn"],["U_CamoBlue_uniform","U_CamoBrn_uniform"]];
-SAR_surv_sniper_primary = ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
-SAR_surv_sniper_pistol 	= [];
-SAR_surv_sniper_items 	= [];
-SAR_surv_sniper_tools 	= [["ItemMap",50],["ItemCompass",30]];
-SAR_surv_sniper_skills 	= [
+SAR_surv_sniper_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_surv_sniper_uniform 	= [["U_C_Mechanic_01_F","U_C_IDAP_Man_Jeans_F","U_C_Man_casual_1_F","U_C_Man_casual_2_F","U_C_Man_casual_3_F","U_C_Journalist","U_C_HunterBody_grn"],["U_CamoBlue_uniform","U_CamoBrn_uniform"]];
+SAR_surv_sniper_vest		= [];
+SAR_surv_sniper_backpack	= [];
+SAR_surv_sniper_primary 	= ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
+SAR_surv_sniper_pistol 		= [];
+SAR_surv_sniper_items 		= [];
+SAR_surv_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
+SAR_surv_sniper_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
@@ -231,13 +243,15 @@ SAR_surv_sniper_skills 	= [
 // ---------------------------------------------------------------------
 
 // Leader lodout options
-SAR_band_leader_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_band_leader_uniform = [["U_I_C_Soldier_Bandit_1_F","U_I_C_Soldier_Bandit_2_F","U_I_C_Soldier_Bandit_3_F","U_I_C_Soldier_Bandit_4_F","U_I_C_Soldier_Bandit_5_F"],["U_CamoBiker_uniform"]];
-SAR_band_leader_primary = ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
-SAR_band_leader_pistol 	= [];
-SAR_band_leader_items 	= [];
-SAR_band_leader_tools 	= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
-SAR_band_leader_skills 	= [
+SAR_band_leader_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_band_leader_uniform 	= [["U_I_C_Soldier_Bandit_1_F","U_I_C_Soldier_Bandit_2_F","U_I_C_Soldier_Bandit_3_F","U_I_C_Soldier_Bandit_4_F","U_I_C_Soldier_Bandit_5_F"],["U_CamoBiker_uniform"]];
+SAR_band_leader_vest		= [];
+SAR_band_leader_backpack	= [];
+SAR_band_leader_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
+SAR_band_leader_pistol 		= [];
+SAR_band_leader_items 		= [];
+SAR_band_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
+SAR_band_leader_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
@@ -253,6 +267,8 @@ SAR_band_leader_skills 	= [
 // Riflemen loadout options
 SAR_band_rifleman_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
 SAR_band_rifleman_uniform 	= [["U_I_C_Soldier_Bandit_1_F","U_I_C_Soldier_Bandit_2_F","U_I_C_Soldier_Bandit_3_F","U_I_C_Soldier_Bandit_4_F","U_I_C_Soldier_Bandit_5_F"],["U_CamoBiker_uniform"]];
+SAR_band_rifleman_vest		= [];
+SAR_band_rifleman_backpack	= [];
 SAR_band_rifleman_primary 	= ["arifle_Katiba_F","arifle_Mk20_F","arifle_MXC_F","arifle_MX_F","arifle_TRG21_F","arifle_TRG20_F"];
 SAR_band_rifleman_pistol 	= [];
 SAR_band_rifleman_items 	= [];
@@ -271,13 +287,15 @@ SAR_band_rifleman_skills 	= [
 ];
 
 // Sniper loadout options
-SAR_band_sniper_gender 	= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
-SAR_band_sniper_uniform = [["U_I_C_Soldier_Bandit_1_F","U_I_C_Soldier_Bandit_2_F","U_I_C_Soldier_Bandit_3_F","U_I_C_Soldier_Bandit_4_F","U_I_C_Soldier_Bandit_5_F"],["U_CamoBiker_uniform"]];
-SAR_band_sniper_primary	= ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
-SAR_band_sniper_pistol 	= [];
-SAR_band_sniper_items 	= [];
-SAR_band_sniper_tools 	= [["ItemMap",50],["ItemCompass",30]];
-SAR_band_sniper_skills 	= [
+SAR_band_sniper_gender 		= ["Epoch_Male_F","Epoch_Female_F"]; // DO NOT CHANGE THIS ARRAY!
+SAR_band_sniper_uniform 	= [["U_I_C_Soldier_Bandit_1_F","U_I_C_Soldier_Bandit_2_F","U_I_C_Soldier_Bandit_3_F","U_I_C_Soldier_Bandit_4_F","U_I_C_Soldier_Bandit_5_F"],["U_CamoBiker_uniform"]];
+SAR_band_sniper_vest		= [];
+SAR_band_sniper_backpack	= [];
+SAR_band_sniper_primary		= ["srifle_DMR_02_F","arifle_MXM_F","srifle_DMR_04_F"];
+SAR_band_sniper_pistol 		= [];
+SAR_band_sniper_items 		= [];
+SAR_band_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
+SAR_band_sniper_skills 		= [
     ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
