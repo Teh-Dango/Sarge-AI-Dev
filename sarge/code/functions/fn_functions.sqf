@@ -218,11 +218,19 @@ SAR_unit_loadout = {
 
     _unit = _this select 0;
     _uniform = _this select 1;
+    _vest = _this select 1;
+    _backpack = _this select 1;
     _primary = _this select 2;
     _items = _this select 3;
     _tools = _this select 4;
 
 	_unit addUniform _uniform;
+	
+	// Get rid of the fanny pack :P
+	removeVest _unit;
+	
+	_unit addVest _vest;
+	_unit addBackpack _backpack;
 	
     {
         _weapon = _primary select _forEachIndex;

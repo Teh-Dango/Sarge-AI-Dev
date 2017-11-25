@@ -14,8 +14,6 @@
 */
 private ["_riflemenlist","_side","_leader_group","_patrol_area_name","_rndpos","_argc","_grouptype","_respawn","_leaderPrimary","_leaderItems","_leaderTools","_riflemanPrimary","_riflemanItems","_riflemanTools","_leaderskills","_sniperskills","_ups_para_list","_riflemanTools","_riflemanskills","_vehicles","_error","_vehicles_crews","_leader","_leadername","_snipers","_riflemen","_veh","_veh_setup","_forEachIndex","_groupvehicles","_sniperPrimary","_sniperItems","_sniperTools","_leader_veh_crew","_type","_respawn_time","_ai_type"];
 
-//if (!isServer) exitWith {};
-
 _patrol_area_name = _this select 0;
 
 _error = false;
@@ -56,14 +54,14 @@ if (_argc > 1) then {
 if (_argc > 2) then {
     _vehicles = _this select 2;
 } else {
-    diag_log "SAR_fnc_AI_infantry: Error, you need to define vehicles for this land AI group";
+    diag_log "SARGE ERROR: Vehicles must be defined when calling this function!";
     _error = true;
 };
 
 if (_argc > 3) then {
     _vehicles_crews = _this select 3;
 } else {
-    diag_log "SAR_fnc_AI_infantry: Error, you need to define crews for vehicles for this land AI group";
+    diag_log "SARGE ERROR: Crew members must be defined when calling this function!";
     _error = true;
 };
 
@@ -81,12 +79,12 @@ if (_argc > 5) then {
 
 {
     if (_x isKindof "Air" || _x isKindof "Ship") then {
-        diag_log "SAR_fnc_AI_infantry: Error, you need to define land vehicles only for this land AI group";
+        diag_log "SARGE ERROR: Only land based vehicles can be spawned with this function!";
         _error = true;
     };
 } foreach _vehicles;
 
-if(_error) exitWith {diag_log "SAR_fnc_AI_infantry: Vehicle patrol setup failed, wrong parameters passed!";};
+if (_error) exitWith {diag_log "SARGE FATAL: Land vehicle spawning has detected an error causing the script to exit!";};
 
 // get a random starting position that is on land
 if (SAR_useBlacklist) then {
@@ -117,6 +115,8 @@ _groupvehicles = createGroup _side;
 	_leaderGender = call compile format ["SAR_%1_leader_gender", _type];
 	_leaderSkills = call compile format ["SAR_%1_leader_skills", _type];
 	_leaderUniform = call compile format ["SAR_%1_leader_uniform", _type];
+	_leaderVest = call compile format ["SAR_%1_leader_vest", _type];
+	_leaderBackpack = call compile format ["SAR_%1_leader_backpack", _type];
 	_leaderPrimary = ["leader",_type] call SAR_unit_loadout_weapons;
 	_leaderItems = ["leader",_type] call SAR_unit_loadout_items;
 	_leaderTools = ["leader",_type] call SAR_unit_loadout_tools;
@@ -129,7 +129,7 @@ _groupvehicles = createGroup _side;
 		_genderUniform = (_leaderUniform select 0) call BIS_fnc_selectRandom;
 		if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = (_leaderUniform select 1) call BIS_fnc_selectRandom;};
 		
-        [_leader,_genderUniform,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
+        [_leader,_genderUniform,_leaderVest,_leaderBackpack,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
 		switch (side _leader) do {
 			case SAR_AI_friendly_side:
@@ -146,7 +146,7 @@ _groupvehicles = createGroup _side;
 			};
 			default
 			{
-				diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+				diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Leader!";
 			};
 		};
 		
@@ -185,6 +185,8 @@ _groupvehicles = createGroup _side;
 	_riflemanGender = call compile format ["SAR_%1_rifleman_gender", _type];
 	_riflemanSkills = call compile format ["SAR_%1_rifleman_skills", _type];
 	_riflemanUniform = call compile format ["SAR_%1_rifleman_uniform", _type];
+	_riflemanVest = call compile format ["SAR_%1_rifleman_vest", _type];
+	_riflemanBackpack = call compile format ["SAR_%1_rifleman_backpack", _type];
 	_riflemanPrimary = ["rifleman",_type] call SAR_unit_loadout_weapons;
 	_riflemanItems = ["rifleman",_type] call SAR_unit_loadout_items;
 	_riflemanTools = ["rifleman",_type] call SAR_unit_loadout_tools;
@@ -196,7 +198,7 @@ _groupvehicles = createGroup _side;
 		_genderUniform = (_riflemanUniform select 0) call BIS_fnc_selectRandom;
 		if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_riflemanUniform select 1) call BIS_fnc_selectRandom;};
 		
-        [_this,_genderUniform,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
+        [_this,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 		switch (side _this) do {
 			case SAR_AI_friendly_side:
@@ -213,7 +215,7 @@ _groupvehicles = createGroup _side;
 			};
 			default
 			{
-				diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+				diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Rifleman!";
 			};
 		};
 		
@@ -253,6 +255,8 @@ _groupvehicles = createGroup _side;
 	_sniperGender = call compile format ["SAR_%1_sniper_gender", _type];
 	_sniperSkills = call compile format ["SAR_%1_sniper_skills", _type];
 	_sniperUniform = call compile format ["SAR_%1_sniper_uniform", _type];
+	_sniperVest = call compile format ["SAR_%1_sniper_vest", _type];
+	_sniperBackpack = call compile format ["SAR_%1_sniper_backpack", _type];
 	_sniperPrimary = ["sniper",_type] call SAR_unit_loadout_weapons;
 	_sniperItems = ["sniper",_type] call SAR_unit_loadout_items;
 	_sniperTools = ["sniper",_type] call SAR_unit_loadout_tools;
@@ -264,7 +268,7 @@ _groupvehicles = createGroup _side;
 		_genderUniform = (_sniperUniform select 0) call BIS_fnc_selectRandom;
 		if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_sniperUniform select 1) call BIS_fnc_selectRandom;};
 		
-        [_this,_genderUniform,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
+        [_this,_genderUniform,_sniperVest,_sniperBackpack,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
 
 		switch (side _this) do {
 			case SAR_AI_friendly_side:
@@ -281,7 +285,7 @@ _groupvehicles = createGroup _side;
 			};
 			default
 			{
-				diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+				diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Sniper!";
 			};
 		};
 		
@@ -348,22 +352,20 @@ if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: Land vehicle group (%2), side %3 spawned in %1 in a %4, side %5.",_patrol_area_name,_groupvehicles, _side, typeOf _veh, side _veh];
 };
 
-if (SAR_HC) then {
-	{
-		_hcID = getPlayerUID _x;
-		if(_hcID select [0,2] isEqualTo 'HC')then {
-			_SAIS_HC = _groupvehicles setGroupOwner (owner _x);
-			if (_SAIS_HC) then {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_groupvehicles,_hcID];
-				};
-			} else {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_groupvehicles,_hcID];
-				};
+{
+	_hcID = getPlayerUID _x;
+	if(_hcID select [0,2] isEqualTo 'HC')then {
+		_SAIS_HC = _groupvehicles setGroupOwner (owner _x);
+		if (_SAIS_HC) then {
+			if (SAR_DEBUG) then {
+				diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_groupvehicles,_hcID];
+			};
+		} else {
+			if (SAR_DEBUG) then {
+				diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_groupvehicles,_hcID];
 			};
 		};
-	} forEach allPlayers;
-};
+	};
+} forEach allPlayers;
 
 _groupvehicles;

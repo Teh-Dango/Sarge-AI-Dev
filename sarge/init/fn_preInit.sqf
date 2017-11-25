@@ -18,7 +18,6 @@
 	- Lower time intervals for detections require more CPU resources
 */
 SAR_version = "2.3.0";
-SAR_HC = true; // If there is no HC it will spawn on server automatically
 
 // TODO: Create dynamic map support for any map
 SAR_maps = ["altis","chernarus","chernarus_summer","chernarusredux","taviana","namalsk","lingor3","mbg_celle2","takistan","fallujah","panthera2","tanoa"];
@@ -111,7 +110,7 @@ SAR_sold_leader_pistol 		= [];
 SAR_sold_leader_items 		= [];
 SAR_sold_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
 SAR_sold_leader_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -133,7 +132,7 @@ SAR_sold_rifleman_pistol 	= [];
 SAR_sold_rifleman_items 	= [];
 SAR_sold_rifleman_tools 	= [["ItemMap",50],["ItemCompass",30]];
 SAR_sold_rifleman_skills  	= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -156,7 +155,7 @@ SAR_sold_sniper_pistol 		= [];
 SAR_sold_sniper_items 		= [];
 SAR_sold_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
 SAR_sold_sniper_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -182,7 +181,7 @@ SAR_surv_leader_pistol 		= [];
 SAR_surv_leader_items 		= [];
 SAR_surv_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
 SAR_surv_leader_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -204,7 +203,7 @@ SAR_surv_rifleman_pistol 	= [];
 SAR_surv_rifleman_items 	= [];
 SAR_surv_rifleman_tools 	= [["ItemMap",50],["ItemCompass",30]];
 SAR_surv_rifleman_skills 	= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -226,7 +225,7 @@ SAR_surv_sniper_pistol 		= [];
 SAR_surv_sniper_items 		= [];
 SAR_surv_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
 SAR_surv_sniper_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -252,7 +251,7 @@ SAR_band_leader_pistol 		= [];
 SAR_band_leader_items 		= [];
 SAR_band_leader_tools 		= [["ItemMap",50],["ItemCompass",30],["NVGoggles",5],["ItemRadio",100]];
 SAR_band_leader_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -274,7 +273,7 @@ SAR_band_rifleman_pistol 	= [];
 SAR_band_rifleman_items 	= [];
 SAR_band_rifleman_tools 	= [["ItemMap",50],["ItemCompass",30]];
 SAR_band_rifleman_skills 	= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],
@@ -296,7 +295,7 @@ SAR_band_sniper_pistol 		= [];
 SAR_band_sniper_items 		= [];
 SAR_band_sniper_tools 		= [["ItemMap",50],["ItemCompass",30]];
 SAR_band_sniper_skills 		= [
-    ["aimingAccuracy",0.10, round(random 2)], // skilltype, <min value>, <random value added to min>;
+    ["aimingAccuracy",0.10, round(random 2)], // [skill, level, multiplier]
     ["aimingShake",   0.10, round(random 2)],
     ["aimingSpeed",   0.10, round(random 2)],
     ["spotDistance",  0.10, round(random 2)],

@@ -14,13 +14,12 @@
 */
 private ["_leadername","_type","_patrol_area_name","_grouptype","_snipers","_riflemen","_action","_side","_leaderList","_riflemanGender","_sniperGender","_rndpos","_group","_leader","_cond","_respawn","_leaderPrimary","_leaderItems","_leaderTools","_riflemanPrimary","_riflemanItems","_riflemanTools","_sniperPrimary","_sniperItems","_sniperTools","_leaderskills","_riflemanSkills","_sniperSkills","_ups_para_list","_respawn_time","_argc","_ai_type"];
 
-//if (!isServer) exitWith {};
 
 _patrol_area_name = _this select 0;
 _grouptype = 		_this select 1;
 _snipers = 			_this select 2;
 _riflemen = 		_this select 3;
-_action =  toLower (_this select 4);
+_action =   toUpper _this select 4;
 _respawn = 			_this select 5;
 
 _argc = count _this;
@@ -63,12 +62,14 @@ if (SAR_useBlacklist) then {
 _group = createGroup _side;
 
 // Prepare leader AI loadout options
-_leaderGender = call compile format ["SAR_%1_leader_gender", _type];
-_leaderSkills = call compile format ["SAR_%1_leader_skills", _type];
-_leaderUniform = call compile format ["SAR_%1_leader_uniform", _type];
-_leaderPrimary = ["leader",_type] call SAR_unit_loadout_weapons;
-_leaderItems = ["leader",_type] call SAR_unit_loadout_items;
-_leaderTools = ["leader",_type] call SAR_unit_loadout_tools;
+_leaderGender 	= call compile format ["SAR_%1_leader_gender", _type];
+_leaderSkills 	= call compile format ["SAR_%1_leader_skills", _type];
+_leaderUniform 	= call compile format ["SAR_%1_leader_uniform", _type];
+_leaderVest 	= call compile format ["SAR_%1_leader_vest", _type];
+_leaderBackpack = call compile format ["SAR_%1_leader_backpack", _type];
+_leaderPrimary 	= ["leader",_type] call SAR_unit_loadout_weapons;
+_leaderItems 	= ["leader",_type] call SAR_unit_loadout_items;
+_leaderTools 	= ["leader",_type] call SAR_unit_loadout_tools;
 
 // create leader of the group
 _leader = _group createunit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
@@ -81,7 +82,7 @@ sleep 0.5;
 _genderUniform = (_leaderUniform select 0) call BIS_fnc_selectRandom;
 if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = (_leaderUniform select 1) call BIS_fnc_selectRandom;};
 
-[_leader,_genderUniform,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
+[_leader,_genderUniform,_leaderVest,_leaderBackpack,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
 switch (side _leader) do {
 	case SAR_AI_friendly_side:
@@ -98,7 +99,7 @@ switch (side _leader) do {
 	};
 	default
 	{
-		diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+		diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Leader!";
 	};
 };
 
@@ -134,12 +135,14 @@ _leader setVariable ["SAR_AI_type",_ai_type + " Leader",false];
 _leader setVariable ["SAR_AI_experience",0,false];
 
 // Establish rifleman unit type and skills
-_riflemanGender = call compile format ["SAR_%1_rifleman_gender", _type];
-_riflemanSkills = call compile format ["SAR_%1_rifleman_skills", _type];
-_riflemanUniform = call compile format ["SAR_%1_rifleman_uniform", _type];
-_riflemanPrimary = ["rifleman",_type] call SAR_unit_loadout_weapons;
-_riflemanItems = ["rifleman",_type] call SAR_unit_loadout_items;
-_riflemanTools = ["rifleman",_type] call SAR_unit_loadout_tools;
+_riflemanGender 	= call compile format ["SAR_%1_rifleman_gender", _type];
+_riflemanSkills 	= call compile format ["SAR_%1_rifleman_skills", _type];
+_riflemanUniform 	= call compile format ["SAR_%1_rifleman_uniform", _type];
+_riflemanVest 		= call compile format ["SAR_%1_rifleman_vest", _type];
+_riflemanBackpack 	= call compile format ["SAR_%1_rifleman_backpack", _type];
+_riflemanPrimary 	= ["rifleman",_type] call SAR_unit_loadout_weapons;
+_riflemanItems 		= ["rifleman",_type] call SAR_unit_loadout_items;
+_riflemanTools 		= ["rifleman",_type] call SAR_unit_loadout_tools;
 
 for "_i" from 0 to (_riflemen - 1) do
 {
@@ -151,7 +154,7 @@ for "_i" from 0 to (_riflemen - 1) do
 	_genderUniform = (_riflemanUniform select 0) call BIS_fnc_selectRandom;
 	if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_riflemanUniform select 1) call BIS_fnc_selectRandom;};
 	
-    [_this,_genderUniform,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
+    [_this,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 	switch (side _this) do {
 		case SAR_AI_friendly_side:
@@ -168,7 +171,7 @@ for "_i" from 0 to (_riflemen - 1) do
 		};
 		default
 		{
-			diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+			diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Rifleman!";
 		};
 	};
 	
@@ -197,6 +200,8 @@ for "_i" from 0 to (_riflemen - 1) do
 _sniperGender = call compile format ["SAR_%1_sniper_gender", _type];
 _sniperSkills = call compile format ["SAR_%1_sniper_skills", _type];
 _sniperUniform = call compile format ["SAR_%1_sniper_uniform", _type];
+_sniperVest = call compile format ["SAR_%1_sniper_vest", _type];
+_sniperBackpack = call compile format ["SAR_%1_sniper_backpack", _type];
 _sniperPrimary = ["sniper",_type] call SAR_unit_loadout_weapons;
 _sniperItems = ["sniper",_type] call SAR_unit_loadout_items;
 _sniperTools = ["sniper",_type] call SAR_unit_loadout_tools;
@@ -212,7 +217,7 @@ for "_i" from 0 to (_snipers - 1) do
 	_genderUniform = (_sniperUniform select 0) call BIS_fnc_selectRandom;
 	if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_sniperUniform select 1) call BIS_fnc_selectRandom;};
 	
-	[_this,_genderUniform,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
+	[_this,_genderUniform,_sniperVest,_sniperBackpack,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
 	
 	switch (side _this) do {
 		case SAR_AI_friendly_side:
@@ -229,7 +234,7 @@ for "_i" from 0 to (_snipers - 1) do
 		};
 		default
 		{
-			diag_log "Sarge AI: Something went wrong when attempting to determine AI side to change headgear!";
+			diag_log "SARGE ERROR: Something went wrong when attempting to determine AI side to change headgear for Sniper!";
 		};
 	};
 	
@@ -303,25 +308,23 @@ switch (_action) do {
 };
 
 if (SAR_DEBUG) then {
-    diag_log format ["Sarge's AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
+    diag_log format ["Sarge AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
 };
 
-if (SAR_HC) then {
-	{
-		_hcID = getPlayerUID _x;
-		if(_hcID select [0,2] isEqualTo 'HC')then {
-			_SAIS_HC = _group setGroupOwner (owner _x);
-			if (_SAIS_HC) then {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
-				};
-			} else {
-				if (SAR_DEBUG) then {
-					diag_log format ["Sarge's AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
-				};
+{
+	_hcID = getPlayerUID _x;
+	if(_hcID select [0,2] isEqualTo 'HC')then {
+		_SAIS_HC = _group setGroupOwner (owner _x);
+		if (_SAIS_HC) then {
+			if (SAR_DEBUG) then {
+				diag_log format ["Sarge AI System: Now moving group %1 to Headless Client %2",_group,_hcID];
+			};
+		} else {
+			if (SAR_DEBUG) then {
+				diag_log format ["Sarge AI System: ERROR! Moving group %1 to Headless Client %2 has failed!",_group,_hcID];
 			};
 		};
-	} forEach allPlayers;
-};
+	};
+} forEach allPlayers;
 
 _group;
