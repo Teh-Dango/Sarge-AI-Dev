@@ -229,8 +229,8 @@ SAR_unit_loadout = {
 	// Get rid of the fanny pack :P
 	removeVest _unit;
 	
-	_unit addVest _vest;
-	_unit addBackpack _backpack;
+	_unit addVest (_vest call BIS_fnc_SelectRandom);
+	_unit addBackpack (_backpack call BIS_fnc_SelectRandom);
 	
     {
         _weapon = _primary select _forEachIndex;
