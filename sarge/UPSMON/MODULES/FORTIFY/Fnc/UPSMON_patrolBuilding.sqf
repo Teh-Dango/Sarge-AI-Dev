@@ -25,7 +25,12 @@ _grp setVariable ["UPSMON_inbuilding",true];
 _units = [_units] call UPSMON_Getunits;
 _movein = [];
 
+diag_log format ["DEBUGGING!! Value of _units is %1",_units];
+
 _currpos = getposATL (_units select 0);
+
+diag_log format ["DEBUGGING!! Value of _currpos is %1",_currpos];
+
 _attackpos = _currpos;
 
 If ("deletethis" in _bldpos) then {_bldpos = _bldpos - ["deletethis"]};

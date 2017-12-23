@@ -313,6 +313,5 @@ if(SAR_DEBUG) then {
 		};
 	};
 } forEach allPlayers;
-};
 
 _group;

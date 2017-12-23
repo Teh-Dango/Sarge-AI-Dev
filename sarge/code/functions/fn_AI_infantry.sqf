@@ -14,12 +14,11 @@
 */
 private ["_leadername","_type","_patrol_area_name","_grouptype","_snipers","_riflemen","_action","_side","_leaderList","_riflemanGender","_sniperGender","_rndpos","_group","_leader","_cond","_respawn","_leaderPrimary","_leaderItems","_leaderTools","_riflemanPrimary","_riflemanItems","_riflemanTools","_sniperPrimary","_sniperItems","_sniperTools","_leaderskills","_riflemanSkills","_sniperSkills","_ups_para_list","_respawn_time","_argc","_ai_type"];
 
-
 _patrol_area_name = _this select 0;
 _grouptype = 		_this select 1;
 _snipers = 			_this select 2;
 _riflemen = 		_this select 3;
-_action =   toUpper _this select 4;
+_action =   toUpper (_this select 4);
 _respawn = 			_this select 5;
 
 _argc = count _this;

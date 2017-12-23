@@ -1,9 +1,9 @@
 #### 2.3.1
 - [New] Vests have been added to the customization options.
 - [New] Backpacks have been added to the customization options.
-- [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating loadouts.
-- [Change] Headless clients will be used automatically if one is detected on the server and the option to enable/disable has been removed.
-- [Fix] Optional UPSMON actions will now be forced to uppercase instead of lower case.
+- [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating gear.
+- [Change] Headless client will be detected automatically and used at random if one or more exists.
+- [Fix] Optional UPSMON actions will now be forced to uppercase instead of lower case to be more aligned with UPSMON.
 
 #### 2.2.9
 - [Fix] Fixed a bug causing friendly AI to have head wraps.
