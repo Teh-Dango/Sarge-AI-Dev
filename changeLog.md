@@ -4,6 +4,7 @@
 - [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating gear.
 - [Change] Headless client will be detected automatically and used at random if one or more exists.
 - [Fix] Optional UPSMON actions will now be forced to uppercase instead of lower case to be more aligned with UPSMON.
+- [Fix] An issue causing the uniform argument to be passed as a parameter on helicopter patrol units has been fixed.
 
 #### 2.2.9
 - [Fix] Fixed a bug causing friendly AI to have head wraps.

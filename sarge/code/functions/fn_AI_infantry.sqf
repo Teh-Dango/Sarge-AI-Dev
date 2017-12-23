@@ -78,8 +78,8 @@ _leader setVariable ["SAR_protect",true,true];
 [_leader] joinSilent _group;
 sleep 0.5;
 
-_genderUniform = (_leaderUniform select 0) call BIS_fnc_selectRandom;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = (_leaderUniform select 1) call BIS_fnc_selectRandom;};
+_genderUniform = _leaderUniform select 0;
+if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _leaderUniform select 1;};
 
 [_leader,_genderUniform,_leaderVest,_leaderBackpack,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
@@ -150,9 +150,9 @@ for "_i" from 0 to (_riflemen - 1) do
 	[_this] joinSilent _group;
 	sleep 0.5;
 
-	_genderUniform = (_riflemanUniform select 0) call BIS_fnc_selectRandom;
-	if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_riflemanUniform select 1) call BIS_fnc_selectRandom;};
-	
+	_genderUniform = _riflemanUniform select 0;
+	if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
+
     [_this,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 	switch (side _this) do {
@@ -213,8 +213,8 @@ for "_i" from 0 to (_snipers - 1) do
 	[_this] joinSilent _group;
 	sleep 0.5;
 	
-	_genderUniform = (_sniperUniform select 0) call BIS_fnc_selectRandom;
-	if (_this isKindOf "Epoch_Female_F") then {_genderUniform = (_sniperUniform select 1) call BIS_fnc_selectRandom;};
+	_genderUniform = _sniperUniform select 0;
+	if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _sniperUniform select 1;};
 	
 	[_this,_genderUniform,_sniperVest,_sniperBackpack,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
 	

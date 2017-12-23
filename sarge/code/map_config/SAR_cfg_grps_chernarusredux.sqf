@@ -112,7 +112,7 @@ if (SAR_dynamic_spawning && (_type == "dynamic")) then {
 };
 if (_type == "static") then {
 	
-	waitUntil {UPSMON_INIT == 1;}
+	waitUntil {UPSMON_INIT == 1;};
 	
 	diag_log format["Sarge's AI System: Static spawning area definition started"];
 
@@ -198,7 +198,7 @@ if (_type == "static") then {
 	//              C) survivor air group patrolling, respawning, respawn time = 120 seconds  
 	//
 	//                      [SAR_marker_DEBUG,true,120] call SAR_fnc_AI_heli; 
-
+/* 
 	//Heli Patrol NWAF
 	[SAR_marker_helipatrol_nwaf,3,true] call SAR_fnc_AI_heli;
 
@@ -210,7 +210,7 @@ if (_type == "static") then {
 
 	// heli patrol east coast
 	[SAR_marker_helipatrol_eastcoast,1,true] call SAR_fnc_AI_heli;
-
+ */
 	diag_log format["Sarge AI: Static Spawning for Helicopter patrols finished"];
 
 	diag_log format["Sarge AI: Static Spawning for infantry patrols started"];

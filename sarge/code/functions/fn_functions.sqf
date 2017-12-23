@@ -218,13 +218,13 @@ SAR_unit_loadout = {
 
     _unit = _this select 0;
     _uniform = _this select 1;
-    _vest = _this select 1;
-    _backpack = _this select 1;
-    _primary = _this select 2;
-    _items = _this select 3;
-    _tools = _this select 4;
+    _vest = _this select 2;
+    _backpack = _this select 3;
+    _primary = _this select 4;
+    _items = _this select 5;
+    _tools = _this select 6;
 
-	_unit addUniform _uniform;
+	_unit addUniform (_uniform call BIS_fnc_SelectRandom);
 	
 	// Get rid of the fanny pack :P
 	removeVest _unit;
@@ -232,7 +232,7 @@ SAR_unit_loadout = {
 	_unit addVest (_vest call BIS_fnc_SelectRandom);
 	_unit addBackpack (_backpack call BIS_fnc_SelectRandom);
 	
-    {
+   {
         _weapon = _primary select _forEachIndex;
 
         if (_weapon !="") then

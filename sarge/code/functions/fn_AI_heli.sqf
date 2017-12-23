@@ -100,8 +100,8 @@ _leader = _groupheli createunit [_leaderGender call BIS_fnc_selectRandom, [(_rnd
 _leader moveInDriver _heli;
 _leader assignAsDriver _heli;
 
-_genderUniform = (_leaderUniform select 0) call BIS_fnc_selectRandom;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = (_leaderUniform select 1) call BIS_fnc_selectRandom;};
+_genderUniform = _leaderUniform select 0;
+if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _leaderUniform select 1;};
 
 [_leader,_leaderPrimary,_genderUniform,_leaderVest,_leaderBackpack,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
@@ -164,8 +164,8 @@ _man2heli = _groupheli createunit [_riflemanGender call BIS_fnc_selectRandom, [(
 
 _man2heli moveInTurret [_heli,[0]];
 
-_genderUniform = (_riflemanUniform select 0) call BIS_fnc_selectRandom;
-if (_man2heli isKindOf "Epoch_Female_F") then {_genderUniform = (_riflemanUniform select 1) call BIS_fnc_selectRandom;};
+_genderUniform = _riflemanUniform select 0;
+if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
 
 [_man2heli,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
@@ -218,8 +218,8 @@ _man3heli = _groupheli createunit [_riflemanGender call BIS_fnc_selectRandom, [_
 
 _man3heli moveInTurret [_heli,[1]];
 
-_genderUniform = (_riflemanUniform select 0) call BIS_fnc_selectRandom;
-if (_man3heli isKindOf "Epoch_Female_F") then {_genderUniform = (_riflemanUniform select 1) call BIS_fnc_selectRandom;};
+_genderUniform = _riflemanUniform select 0;
+if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
 
 [_man3heli,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
