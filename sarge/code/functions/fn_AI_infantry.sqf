@@ -71,7 +71,7 @@ _leaderItems 	= ["leader",_type] call SAR_unit_loadout_items;
 _leaderTools 	= ["leader",_type] call SAR_unit_loadout_tools;
 
 // create leader of the group
-_leader = _group createunit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+_leader = _group createUnit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
 
 _leader setVariable ["SAR_protect",true,true];
 
@@ -118,8 +118,8 @@ _leader addEventHandler ["HandleDamage",{if (_this select 1 != "") then {_unit =
 
 // set skills of the leader
 {
-    _leader setskill [_x select 0,((_x select 1) * (_x select 2))];
-} foreach _leaderskills;
+    _leader setSkill [_x select 0,((_x select 1) * (_x select 2))];
+} forEach _leaderskills;
 
 SAR_leader_number = SAR_leader_number + 1;
 _leadername = format["SAR_leader_%1",SAR_leader_number];
@@ -145,7 +145,7 @@ _riflemanTools 		= ["rifleman",_type] call SAR_unit_loadout_tools;
 
 for "_i" from 0 to (_riflemen - 1) do
 {
-    _this = _group createunit [_riflemanGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+    _this = _group createUnit [_riflemanGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
 
 	[_this] joinSilent _group;
 	sleep 0.5;
@@ -185,8 +185,8 @@ for "_i" from 0 to (_riflemen - 1) do
 	
     // set skills
     {
-        _this setskill [_x select 0,((_x select 1) * (_x select 2))];
-    } foreach _riflemanSkills;
+        _this setSkill [_x select 0,((_x select 1) * (_x select 2))];
+    } forEach _riflemanSkills;
 
     // store AI type on the AI
     _this setVariable ["SAR_AI_type",_ai_type,false];
@@ -208,7 +208,7 @@ _sniperTools = ["sniper",_type] call SAR_unit_loadout_tools;
 // create crew
 for "_i" from 0 to (_snipers - 1) do
 {
-	_this = _group createunit [_sniperGender call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "NONE"];
+	_this = _group createUnit [_sniperGender call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "NONE"];
 	
 	[_this] joinSilent _group;
 	sleep 0.5;
@@ -248,8 +248,8 @@ for "_i" from 0 to (_snipers - 1) do
 	
 	// set skills
 	{
-		_this setskill [_x select 0,((_x select 1) * (_x select 2))];
-	} foreach _sniperSkills;
+		_this setSkill [_x select 0,((_x select 1) * (_x select 2))];
+	} forEach _sniperSkills;
 	
 	// store AI type on the AI
 	_this setVariable ["SAR_AI_type",_ai_type,false];

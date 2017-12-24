@@ -16,7 +16,7 @@ private ["_worldname","_startx","_starty","_gridsize_x","_gridsize_y","_gridwidt
 diag_log format ["Sarge's AI System: Welcome to Sarge AI!"];
 diag_log format ["Sarge's AI System: Now initializing Sarge AI version %1 for %2",SAR_version,worldName];
 
-call compile preProcessFileLineNumbers "\addons\sarge\UPSMON\Init_UPSMON.sqf";
+//call compile preProcessFileLineNumbers "\addons\sarge\UPSMON\Init_UPSMON.sqf";
 call compile preProcessFileLineNumbers "\addons\sarge\code\functions\fn_functions.sqf";
 
 if (SAR_dynamic_spawning) then {
@@ -25,11 +25,7 @@ if (SAR_dynamic_spawning) then {
 	
 	if (!(_worldname in SAR_Maps)) exitWith {diag_log format ["Sarge's AI System: %1 does not currently support dynamic AI spawning! Dynamic AI spawning has been disabled!",_worldName];};
 	
-	if (_worldname isEqualTo "chernarus") then {
-		call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grid_chernarus.sqf"]);
-	} else {
-		call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grid_%1.sqf",_worldname]);
-	};
+	call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grid_%1.sqf",_worldname]);
 	
 	diag_log format ["Sarge's AI System: Now generating dynamic map grid for %1.",_worldname];
 	
@@ -92,11 +88,7 @@ if (SAR_dynamic_spawning) then {
     };
     diag_log format["Sarge's AI System: The map grid has been established for %1.",worldName];
 	
-	if (_worldname isEqualTo "chernarus") then {
-		["dynamic"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_chernarus.sqf"]);
-	} else {
-		["dynamic"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_%1.sqf",_worldname]);
-	};
+	["dynamic"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_%1.sqf",_worldname]);
 	
 	diag_log format["Sarge's AI System: Dynamic spawn definitions have been configured for %1.",worldName];
 };
@@ -110,13 +102,9 @@ if (SAR_useBlacklist) then {
 	}; */
 };
 
-if (_worldname isEqualTo "chernarus") then {
-	["static"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_chernarus.sqf"]);
-} else {
-	["static"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_%1.sqf",_worldname]);
-};
+//["static"] call compile preprocessFileLineNumbers (format ["\addons\sarge\code\map_config\SAR_cfg_grps_%1.sqf",_worldname]);
 
-diag_log format["Sarge's AI System: Static spawn definitions have been configured for %1.",_worldname];
+//diag_log format["Sarge's AI System: Static spawn definitions have been configured for %1.",_worldname];
 
 if (SAR_Base_Gaurds) then {
 	//call compile PreprocessFileLineNumbers "\addons\sarge\code\init_base_guards.sqf";

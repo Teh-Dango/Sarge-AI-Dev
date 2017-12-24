@@ -54,7 +54,7 @@ if (SAR_dynamic_spawning && (_type == "dynamic")) then {
 };
 if (_type == "static") then {
 	
-	waitUntil {UPSMON_INIT == 1;};
+	// waitUntil {UPSMON_INIT == 1;};
 	
 	diag_log format["Sarge's AI System: Static spawning area definition started"];
 

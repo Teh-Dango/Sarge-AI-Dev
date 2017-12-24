@@ -17,23 +17,23 @@
 	- Secondary AI skills can be decimal values i.e. 0.23
 	- Lower time intervals for detections require more CPU resources
 */
-SAR_version = "2.3.0";
+SAR_version = "2.3.1";
 
 // TODO: Create dynamic map support for any map
 SAR_maps = ["altis","chernarus","chernarus_summer","chernarusredux","taviana","namalsk","lingor3","mbg_celle2","takistan","fallujah","panthera2","tanoa"];
-SAR_useBlacklist = false; // ! ONLY USE FOR EXILE MOD !
+SAR_useBlacklist = false; // ! IN DEVELOPMENT !
 
 /* Debug Settings */
 SAR_DEBUG 			= false; // Set to true for RPT info on AI
 SAR_EXTREME_DEBUG 	= false; // Set to true for RPT info on damn near everything
 SAR_HITKILL_DEBUG 	= false; // Set to true for RPT info on AI shooting and killing
 SAR_log_AI_kills 	= false; // Set to true for kill logging by variable. ! IN DEVELOPMENT !
-SAR_KILL_MSG 		= false; // Set to true for announcing AI kills to the server ! IN DEVELOPMENT !
+SAR_KILL_MSG 		= true; // Set to true for announcing AI kills to the server ! IN DEVELOPMENT !
 
 /* AI Settings */
 SAR_dynamic_spawning 				= true;		// Turn dynamic grid spawns on or off
-SAR_Base_Gaurds 					= false;	// Turn AI territory guards on or off ! ONLY USE FOR EXILE MOD !
-SAR_anim_heli						= true;		// Turn animated heli crashes on or off ! Loot only configured for EXILE !
+SAR_Base_Gaurds 					= false;	// Turn AI territory guards on or off ! IN DEVELOPMENT !
+SAR_anim_heli						= true;		// Turn animated heli crashes on or off ! IN DEVELOPMENT !
 SAR_dynamic_group_respawn 			= true;		// Turn dynamic grid AI respawn on or off
 SAR_dynamic_heli_respawn 			= true;		// Turn dynamic grid AI respawn on or off
 SAR_AI_COMBAT_VEHICLE 				= false;	// AI will steal a vehicle while in combat.
@@ -62,11 +62,11 @@ SAR_max_grps_soldiers 		= 2; 	// Total groups per grid
 SAR_max_grps_survivors 		= 2; 	// Total groups per grid
 
 // Size of AI groups plus a leader
-SAR_max_grpsize_bandits 	= 3; 	// Size of the group !If using HC use +1 at least to offset AI side bug only for bandits!
+SAR_max_grpsize_bandits 	= 3; 	// Size of the group
 SAR_max_grpsize_soldiers 	= 2;	// Size of the group
 SAR_max_grpsize_survivors 	= 2; 	// Size of the group
 
-// Chance the AI Helicopters will spawn - IN DEVELOPMENT
+// Dynamic AI Helicopters ! IN DEVELOPMENT !
 SAR_chance_band_heli		= 35;
 SAR_chance_surv_heli		= 35;
 SAR_chance_mili_heli		= 35;
