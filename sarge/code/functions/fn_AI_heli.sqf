@@ -14,8 +14,6 @@
 */
 private ["_ai_type","_riflemanGender","_side","_leader_group","_patrol_area_name","_rndpos","_groupheli","_heli","_leader","_man2heli","_man3heli","_argc","_grouptype","_respawn","_leaderPrimary","_leaderItems","_leaderTools","_riflemanPrimary","_riflemanItems","_riflemanTools","_leaderskills","_sniperskills","_ups_para_list","_type","_error","_respawn_time","_leadername"];
 
-//if (!isServer) exitWith {};
-
 _patrol_area_name = _this select 0;
 _argc = count _this;
 _error = false;
@@ -79,31 +77,31 @@ _groupheli setVariable ["SAR_protect",true,true];
 _heli = createVehicle [(SAR_heli_type call BIS_fnc_selectRandom), [(_rndpos select 0) + 10, _rndpos select 1, 80], [], 0, "FLY"];
 _heli setFuel 1;
 _heli setVariable ["SAR_protect",true,true];
-_heli engineon true;
+_heli engineOn true;
 _heli setVehicleAmmo 1;
 
 [_heli] joinSilent _groupheli;
 sleep 1;
 
 // Prepare leader AI loadout options
-_leaderGender = call compile format ["SAR_%1_leader_gender", _type];
-_leaderSkills = call compile format ["SAR_%1_leader_skills", _type];
-_leaderUniform = call compile format ["SAR_%1_leader_uniform", _type];
-_leaderVest = call compile format ["SAR_%1_leader_vest", _type];
+_leaderModel 	= call compile format ["SAR_%1_leader_model", _type];
+_leaderSkills 	= call compile format ["SAR_%1_leader_skills", _type];
+_leaderUniform 	= call compile format ["SAR_%1_leader_uniform", _type];
+_leaderVest 	= call compile format ["SAR_%1_leader_vest", _type];
 _leaderBackpack = call compile format ["SAR_%1_leader_backpack", _type];
-_leaderPrimary = ["leader",_type] call SAR_unit_loadout_weapons;
-_leaderItems = ["leader",_type] call SAR_unit_loadout_items;
-_leaderTools = ["leader",_type] call SAR_unit_loadout_tools;
+_leaderPrimary 	= ["leader",_type] call SAR_unit_loadout_weapons;
+_leaderItems 	= ["leader",_type] call SAR_unit_loadout_items;
+_leaderTools 	= ["leader",_type] call SAR_unit_loadout_tools;
 
-_leader = _groupheli createunit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) + 10, _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
+_leader = _groupheli createUnit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) + 10, _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
 
 _leader moveInDriver _heli;
 _leader assignAsDriver _heli;
 
-_genderUniform = _leaderUniform select 0;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _leaderUniform select 1;};
+_modelUniform = _leaderUniform select 0;
+if ((count _leaderGender > 0) && _leader isKindOf "Epoch_Female_F") then {_modelUniform = _leaderUniform select 1;};
 
-[_leader,_leaderPrimary,_genderUniform,_leaderVest,_leaderBackpack,_leaderItems,_leaderTools] call SAR_unit_loadout;
+[_leader,_leaderPrimary,_modelUniform,_leaderVest,_leaderBackpack,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
 switch (side _leader) do {
 	case SAR_AI_friendly_side:
@@ -140,8 +138,8 @@ _leader addMPEventHandler ["MPHit", {Null = _this spawn SAR_fnc_AI_hit;}];
 
 // set skills of the leader
 {
-    _leader setskill [_x select 0,((_x select 1) * (_x select 2))];
-} foreach _leaderSkills;
+    _leader setSkill [_x select 0,((_x select 1) * (_x select 2))];
+} forEach _leaderSkills;
 
 // store AI type on the AI
 _leader setVariable ["SAR_AI_type",_ai_type + " Leader",false];
@@ -150,24 +148,24 @@ _leader setVariable ["SAR_AI_type",_ai_type + " Leader",false];
 _leader setVariable ["SAR_AI_experience",0,false];
 
 // Establish rifleman unit type and skills
-_riflemanGender = call compile format ["SAR_%1_rifleman_gender", _type];
-_riflemanSkills = call compile format ["SAR_%1_rifleman_skills", _type];
-_riflemanUniform = call compile format ["SAR_%1_rifleman_uniform", _type];
-_riflemanVest = call compile format ["SAR_%1_rifleman_vest", _type];
-_riflemanBackpack = call compile format ["SAR_%1_rifleman_backpack", _type];
-_riflemanPrimary = ["rifleman",_type] call SAR_unit_loadout_weapons;
-_riflemanItems = ["rifleman",_type] call SAR_unit_loadout_items;
-_riflemanTools = ["rifleman",_type] call SAR_unit_loadout_tools;
+_riflemanModel 		= call compile format ["SAR_%1_rifleman_model", _type];
+_riflemanSkills 	= call compile format ["SAR_%1_rifleman_skills", _type];
+_riflemanUniform 	= call compile format ["SAR_%1_rifleman_uniform", _type];
+_riflemanVest 		= call compile format ["SAR_%1_rifleman_vest", _type];
+_riflemanBackpack 	= call compile format ["SAR_%1_rifleman_backpack", _type];
+_riflemanPrimary 	= ["rifleman",_type] call SAR_unit_loadout_weapons;
+_riflemanItems 		= ["rifleman",_type] call SAR_unit_loadout_items;
+_riflemanTools 		= ["rifleman",_type] call SAR_unit_loadout_tools;
 
 // Gunner 1
-_man2heli = _groupheli createunit [_riflemanGender call BIS_fnc_selectRandom, [(_rndpos select 0) - 30, _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
+_man2heli = _groupheli createUnit [_riflemanModel call BIS_fnc_selectRandom, [(_rndpos select 0) - 30, _rndpos select 1, 0], [], 0.5, "CAN_COLLIDE"];
 
 _man2heli moveInTurret [_heli,[0]];
 
-_genderUniform = _riflemanUniform select 0;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
+_modelUniform = _riflemanUniform select 0;
+if (_man2heli isKindOf "Epoch_Female_F") then {_modelUniform = _riflemanUniform select 1;};
 
-[_man2heli,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
+[_man2heli,_modelUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 switch (side _man2heli) do {
 	case SAR_AI_friendly_side:
@@ -204,8 +202,8 @@ _man2heli addMPEventHandler ["MPHit", {Null = _this spawn SAR_fnc_AI_hit;}];
 
 // set skills
 {
-    _man2heli setskill [_x select 0,((_x select 1) * (_x select 2))];
-} foreach _riflemanSkills;
+    _man2heli setSkill [_x select 0,((_x select 1) * (_x select 2))];
+} forEach _riflemanSkills;
  
 // store AI type on the AI
 _man2heli setVariable ["SAR_AI_type",_ai_type,false];
@@ -214,14 +212,14 @@ _man2heli setVariable ["SAR_AI_type",_ai_type,false];
 _man2heli setVariable ["SAR_AI_experience",0,false];
 
 //Gunner 2
-_man3heli = _groupheli createunit [_riflemanGender call BIS_fnc_selectRandom, [_rndpos select 0, (_rndpos select 1) + 30, 0], [], 0.5, "CAN_COLLIDE"];
+_man3heli = _groupheli createUnit [_riflemanModel call BIS_fnc_selectRandom, [_rndpos select 0, (_rndpos select 1) + 30, 0], [], 0.5, "CAN_COLLIDE"];
 
 _man3heli moveInTurret [_heli,[1]];
 
-_genderUniform = _riflemanUniform select 0;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
+_modelUniform = _riflemanUniform select 0;
+if (_man3heli isKindOf "Epoch_Female_F") then {_modelUniform = _riflemanUniform select 1;};
 
-[_man3heli,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
+[_man3heli,_modelUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 switch (side _man3heli) do {
 	case SAR_AI_friendly_side:
@@ -258,8 +256,8 @@ _man3heli addMPEventHandler ["MPHit", {Null = _this spawn SAR_fnc_AI_hit;}];
 
 // set skills
 {
-    _man3heli setskill [_x select 0,((_x select 1) * (_x select 2))];
-} foreach _riflemanskills;
+    _man3heli setSkill [_x select 0,((_x select 1) * (_x select 2))];
+} forEach _riflemanskills;
 
 // store AI type on the AI
 _man3heli setVariable ["SAR_AI_type",_ai_type,false];
@@ -271,9 +269,9 @@ _man3heli setVariable ["SAR_AI_experience",0,false];
 _ups_para_list = [_leader,_patrol_area_name,'NOFOLLOW','AWARE','SPAWNED','DELETE:',SAR_DELETE_TIMEOUT];
 
 if (_respawn) then {
-    _ups_para_list pushBack ['RESPAWN'];
-    _ups_para_list pushBack ['RESPAWNTIME:'];
-    _ups_para_list pushBack [_respawn_time];
+    _ups_para_list pushBack "RESPAWN";
+    _ups_para_list pushBack "RESPAWNTIME:";
+    _ups_para_list pushBack _respawn_time;
 };
 
 _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
@@ -282,7 +280,7 @@ if(SAR_DEBUG) then {
     diag_log format["Sarge's AI System: AI Heli patrol (%2) spawned in: %1.",_patrol_area_name,_groupheli];
 };
 
-{
+/* {
 	_hcID = getPlayerUID _x;
 	if(_hcID select [0,2] isEqualTo 'HC')then {
 		_SAIS_HC = _groupheli setGroupOwner (owner _x);
@@ -296,6 +294,6 @@ if(SAR_DEBUG) then {
 			};
 		};
 	};
-} forEach allPlayers;
+} forEach allPlayers; */
 
 _groupheli;

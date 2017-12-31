@@ -1,4 +1,20 @@
-#### 2.3.1
+#### 2.4.0 Release
+- [New] Vests have been added to the customization options.
+- [New] Backpacks have been added to the customization options.
+- [New] Sarge AI now supports Desolation, Epoch and Exile mods and is determined by the class names of CfgMods.
+- [Change] All configuration files are now in the "config" folder.
+- [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating gear.
+- [Change] All chernarus maps will be processed separately for now until I can work out a more reliable way of using one map file for all variants.
+- [Change] All map files have been formatted with the proper logic to properly handle dynamic and static calls.
+- [Change] AI now have unique voices per type and should be able to speak to other AI group members allowing players to hear the AI.
+- [Fix] Optional UPSMON actions will now be forced to uppercase instead of lower case to be more aligned with UPSMON.
+- [Fix] An issue causing the uniform argument to be passed as an array on helicopter patrol units has been fixed.
+- [Fix] A count check has been added to all loadout arrays before processing them to avoid errors when processing empty arrays.
+- [Fix] AI not being given a speaker has been resolved and should no longer spam rpt logs when spawning new AI.
+- [Bug] Static spawns are not working as expected and have been disabled for now.
+- [Bug] Headless client has been disabled to begin work on a more appropriate method.
+
+#### 2.3.1 Dev
 - [New] Vests have been added to the customization options.
 - [New] Backpacks have been added to the customization options.
 - [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating gear.

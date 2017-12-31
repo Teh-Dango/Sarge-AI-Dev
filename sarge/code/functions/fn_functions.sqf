@@ -6,7 +6,7 @@
 	https://github.com/Swiss-Sarge
 
 	# Fork #
-	Sarge AI System 2.0pushBack
+	Sarge AI System 2.0
 	Modded for Arma 3: Epoch Mod
 	Changes: Dango
 	https://www.hod-servers.com
@@ -74,7 +74,7 @@ SAR_circle_static = {
 
                 _newpos = (_center modelToWorld [(sin (_forEachIndex * _angle))*_radius, (cos (_forEachIndex *_angle))*_radius, 0]);
 
-				//diag_log format["Newpos %1: %2",_foreachindex,_newpos];
+				//diag_log format["Newpos %1: %2",_forEachindex,_newpos];
 
                 if (_defend) then {
                     _dir = 0;
@@ -82,11 +82,11 @@ SAR_circle_static = {
                     _dir = 180;
                 };
 
-                _viewangle = (_foreachIndex * _angle) + _dir;
+                _viewangle = (_forEachIndex * _angle) + _dir;
 
                 [_x,_pos,_newpos,_viewangle,_defend] spawn SAR_move_to_circle_pos;
             };
-        } foreach _units;
+        } forEach _units;
         //_leader disableAI "MOVE";
     };
 };
@@ -128,9 +128,9 @@ SAR_unit_loadout_tools = {
 			_probability = _x select 1;
 			_chance = (random 100);
 			if (_chance < _probability) then {
-				_unit_tools pushback [_tool];
+				_unit_tools pushBack _tool;
 			};
-		} foreach _unit_tools_list;
+		} forEach _unit_tools_list;
 	};
 	
     _unit_tools;
@@ -152,9 +152,9 @@ SAR_unit_loadout_items = {
 			_probability = _x select 1;
 			_chance = (random 100);
 			if (_chance < _probability) then {
-				_unit_items pushback [_item];
+				_unit_items pushBack _item;
 			};
-		} foreach _unit_items_list;
+		} forEach _unit_items_list;
 		
 	} else {
 		_unit_items = [];
@@ -182,24 +182,29 @@ SAR_unit_loadout_weapons = {
     if ((count _unit_pistol_list) > 0) then {
         _unit_pistol_name = _unit_pistol_list call BIS_fnc_SelectRandom;
     };
-    _unit_weapon_names pushback [_unit_weapon_name];
-    _unit_weapon_names pushback [_unit_pistol_name];
+    _unit_weapon_names pushBack _unit_weapon_name;
+    _unit_weapon_names pushBack _unit_pistol_name;
 
     _unit_weapon_names;
 };
 
 SAR_unit_loadout = {
 
-	private ["_unit","_primary","_uniform","_weapon","_items","_unit_magazine_name","_item","_tool","_tools","_forEachIndex"];
+	private ["_unit","_weapons","_uniform","_weapon","_items","_unit_magazine_name","_item","_tool","_tools","_forEachIndex"];
 
     _unit 		= _this select 0;
     _uniform 	= _this select 1;
     _vest 		= _this select 2;
     _backpack 	= _this select 3;
-    _primary 	= _this select 4;
+    _weapons 	= _this select 4;
     _items 		= _this select 5;
     _tools 		= _this select 6;
 
+	removeHeadgear _unit;
+	sleep 0.1;
+	removeUniform _unit;
+	sleep 0.1;
+	
 	_unit addUniform (_uniform call BIS_fnc_SelectRandom);
 	
 	if ((count _vest) > 0) then {
@@ -212,8 +217,10 @@ SAR_unit_loadout = {
 		_unit addBackpack (_backpack call BIS_fnc_SelectRandom);
 	};
 	
+	diag_log format ["Sarge AI System: Weapons array is %1",_weapons];
+	
 	{
-        _weapon = _primary select _forEachIndex;
+        _weapon = _x;
 
         if (_weapon != "") then
         {
@@ -221,17 +228,17 @@ SAR_unit_loadout = {
             _unit addMagazine _unit_magazine_name;
             _unit addWeapon _weapon;
         };
-    } foreach _primary;
+    } forEach _weapons;
 
     {
-        _item = _items select _forEachIndex;
+        _item = _x;
         _unit addMagazine _item;
-    } foreach _items;
+    } forEach _items;
 
     {
-        _tool = _tools select _forEachIndex;
+        _tool = _x;
         _unit addWeapon _tool;
-    } foreach _tools;
+    } forEach _tools;
 };
 
 SAR_AI_mon_upd = {
@@ -275,7 +282,7 @@ SAR_AI_mon_upd = {
 		
         _success = [SAR_AI_monitor, _path, _valuearray select _forEachIndex] call BIS_fnc_setNestedElement;
     
-	} foreach _typearray;
+	} forEach _typearray;
 
     _success;
 };
@@ -318,8 +325,8 @@ SAR_AI_mon_read = {
                 _path set [1,6];
             };
         };
-        _resultarray pushBack [[SAR_AI_monitor, _path] call BIS_fnc_returnNestedElement];
-    } foreach _typearray;
+        _resultarray set [count _resultarray,[SAR_AI_monitor, _path] call BIS_fnc_returnNestedElement];
+    } forEach _typearray;
 
     _resultarray;
 };
@@ -328,7 +335,7 @@ SAR_DEBUG_mon = {
     diag_log "--------------------Start of AI monitor values -------------------------";
     {
         diag_log format["SAR EXTREME DEBUG: %1",_x];
-    }foreach SAR_AI_monitor;
+    }forEach SAR_AI_monitor;
 
     diag_log "--------------------End of AI monitor values   -------------------------";
 };
@@ -372,10 +379,10 @@ SAR_fnc_returnVehicleTurrets = {
 			//Make sure the entry was found.
 			if (!(isNil "_hasGunner")) then {
 				if (_hasGunner == 1) then {
-					_turrets = _turrets pushBack [_turretIndex];
+					_turrets = _turrets pushBack _turretIndex;
 					//Include sub-turrets, if present.
-					if (isClass (_subEntry >> "Turrets")) then { _turrets = _turrets pushBack [[_subEntry >> "Turrets"] call SAR_fnc_returnVehicleTurrets]; }
-					else { _turrets = _turrets pushBack [[]]; };
+					if (isClass (_subEntry >> "Turrets")) then { _turrets = _turrets pushBack [_subEntry >> "Turrets"] call SAR_fnc_returnVehicleTurrets; }
+					else { _turrets = _turrets pushBack []; };
 				};
 			};
 			_turretIndex = _turretIndex + 1;

@@ -16,7 +16,7 @@
 class CfgPatches {
 	class Sarge_AI {
 		requiredVersion = 1.36;
-		SAR_version = 2.2;
+		version = 2.4;
 		requiredAddons[] = {};
 		units[] = {};
 		weapons[] = {};

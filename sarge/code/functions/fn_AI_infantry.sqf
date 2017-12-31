@@ -61,7 +61,7 @@ if (SAR_useBlacklist) then {
 _group = createGroup _side;
 
 // Prepare leader AI loadout options
-_leaderGender 	= call compile format ["SAR_%1_leader_gender", _type];
+_leaderModel 	= call compile format ["SAR_%1_leader_model", _type];
 _leaderSkills 	= call compile format ["SAR_%1_leader_skills", _type];
 _leaderUniform 	= call compile format ["SAR_%1_leader_uniform", _type];
 _leaderVest 	= call compile format ["SAR_%1_leader_vest", _type];
@@ -71,17 +71,17 @@ _leaderItems 	= ["leader",_type] call SAR_unit_loadout_items;
 _leaderTools 	= ["leader",_type] call SAR_unit_loadout_tools;
 
 // create leader of the group
-_leader = _group createUnit [_leaderGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+_leader = _group createUnit [_leaderModel call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
 
 _leader setVariable ["SAR_protect",true,true];
 
 [_leader] joinSilent _group;
 sleep 0.5;
 
-_genderUniform = _leaderUniform select 0;
-if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _leaderUniform select 1;};
+_modelUniform = _leaderUniform select 0;
+if (_leader isKindOf "Epoch_Female_F") then {_modelUniform = _leaderUniform select 1;};
 
-[_leader,_genderUniform,_leaderVest,_leaderBackpack,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
+[_leader,_modelUniform,_leaderVest,_leaderBackpack,_leaderPrimary,_leaderItems,_leaderTools] call SAR_unit_loadout;
 
 switch (side _leader) do {
 	case SAR_AI_friendly_side:
@@ -134,7 +134,7 @@ _leader setVariable ["SAR_AI_type",_ai_type + " Leader",false];
 _leader setVariable ["SAR_AI_experience",0,false];
 
 // Establish rifleman unit type and skills
-_riflemanGender 	= call compile format ["SAR_%1_rifleman_gender", _type];
+_riflemanModel 	= call compile format ["SAR_%1_rifleman_model", _type];
 _riflemanSkills 	= call compile format ["SAR_%1_rifleman_skills", _type];
 _riflemanUniform 	= call compile format ["SAR_%1_rifleman_uniform", _type];
 _riflemanVest 		= call compile format ["SAR_%1_rifleman_vest", _type];
@@ -145,15 +145,15 @@ _riflemanTools 		= ["rifleman",_type] call SAR_unit_loadout_tools;
 
 for "_i" from 0 to (_riflemen - 1) do
 {
-    _this = _group createUnit [_riflemanGender call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
+    _this = _group createUnit [_riflemanModel call BIS_fnc_selectRandom, [(_rndpos select 0) , _rndpos select 1, 0], [], 0.5, "NONE"];
 
 	[_this] joinSilent _group;
 	sleep 0.5;
 
-	_genderUniform = _riflemanUniform select 0;
-	if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _riflemanUniform select 1;};
+	_modelUniform = _riflemanUniform select 0;
+	if (_this isKindOf "Epoch_Female_F") then {_modelUniform = _riflemanUniform select 1;};
 
-    [_this,_genderUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
+    [_this,_modelUniform,_riflemanVest,_riflemanBackpack,_riflemanPrimary,_riflemanItems,_riflemanTools] call SAR_unit_loadout;
 
 	switch (side _this) do {
 		case SAR_AI_friendly_side:
@@ -196,7 +196,7 @@ for "_i" from 0 to (_riflemen - 1) do
 };
 
 // Prepare sniper AI loadout options
-_sniperGender = call compile format ["SAR_%1_sniper_gender", _type];
+_sniperModel = call compile format ["SAR_%1_sniper_model", _type];
 _sniperSkills = call compile format ["SAR_%1_sniper_skills", _type];
 _sniperUniform = call compile format ["SAR_%1_sniper_uniform", _type];
 _sniperVest = call compile format ["SAR_%1_sniper_vest", _type];
@@ -208,15 +208,15 @@ _sniperTools = ["sniper",_type] call SAR_unit_loadout_tools;
 // create crew
 for "_i" from 0 to (_snipers - 1) do
 {
-	_this = _group createUnit [_sniperGender call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "NONE"];
+	_this = _group createUnit [_sniperModel call BIS_fnc_selectRandom, [(_rndpos select 0), _rndpos select 1, 0], [], 0.5, "NONE"];
 	
 	[_this] joinSilent _group;
 	sleep 0.5;
 	
-	_genderUniform = _sniperUniform select 0;
-	if (_leader isKindOf "Epoch_Female_F") then {_genderUniform = _sniperUniform select 1;};
+	_modelUniform = _sniperUniform select 0;
+	if (_this isKindOf "Epoch_Female_F") then {_modelUniform = _sniperUniform select 1;};
 	
-	[_this,_genderUniform,_sniperVest,_sniperBackpack,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
+	[_this,_modelUniform,_sniperVest,_sniperBackpack,_sniperPrimary,_sniperItems,_sniperTools] call SAR_unit_loadout;
 	
 	switch (side _this) do {
 		case SAR_AI_friendly_side:
@@ -262,21 +262,21 @@ for "_i" from 0 to (_snipers - 1) do
 _ups_para_list = [_leader,_patrol_area_name,"NOSHARE","NOFOLLOW","SPAWNED","DELETE:",SAR_DELETE_TIMEOUT];
 
 if (_respawn) then {
-    _ups_para_list pushBack ["RESPAWN"];
-    _ups_para_list pushBack ["RESPAWNTIME:"];
-    _ups_para_list pushBack [_respawn_time];
+    _ups_para_list pushBack "RESPAWN";
+    _ups_para_list pushBack "RESPAWNTIME:";
+    _ups_para_list pushBack _respawn_time;
 };
 
 if (!SAR_AI_STEAL_VEHICLE) then {
-    _ups_para_list pushBack ["NOVEH2"];
+    _ups_para_list pushBack "NOVEH2";
 };
 
 if (!SAR_AI_COMBAT_VEHICLE) then {
-    _ups_para_list pushBack ["NOVEH"];
+    _ups_para_list pushBack "NOVEH";
 };
 
 if (SAR_AI_disable_UPSMON_AI) then {
-	_ups_para_list pushBack ["NOAI"];
+	_ups_para_list pushBack "NOAI";
 };
 
 if(_action == "") then {_action = "PATROL";};
@@ -288,7 +288,7 @@ switch (_action) do {
     };
     case "FORTIFY":
     {
-        _ups_para_list pushBack ["FORTIFY"];
+        _ups_para_list pushBack "FORTIFY";
         _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
     case "PATROL":
@@ -297,7 +297,7 @@ switch (_action) do {
     };
     case "AMBUSH":
     {
-        _ups_para_list pushBack ["AMBUSH"];
+        _ups_para_list pushBack "AMBUSH";
         _ups_para_list execVM "\addons\sarge\UPSMON\UPSMON.sqf";
     };
 	default
@@ -310,7 +310,7 @@ if (SAR_DEBUG) then {
     diag_log format ["Sarge AI System: Infantry group (%3) spawned in: %1 with action: %2 on side: %4",_patrol_area_name,_action,_group,(side _group)];
 };
 
-{
+/* {
 	_hcID = getPlayerUID _x;
 	if(_hcID select [0,2] isEqualTo 'HC')then {
 		_SAIS_HC = _group setGroupOwner (owner _x);
@@ -324,6 +324,6 @@ if (SAR_DEBUG) then {
 			};
 		};
 	};
-} forEach allPlayers;
+} forEach allPlayers; */
 
 _group;
