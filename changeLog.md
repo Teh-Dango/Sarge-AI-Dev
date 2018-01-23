@@ -1,4 +1,4 @@
-#### 2.4.0
+#### 2.4.2
 - [Fix] Fixed a bug that prevented Epoch players from entering vehicles.
 
 #### 2.4.0
