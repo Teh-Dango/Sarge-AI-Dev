@@ -1,4 +1,7 @@
-#### 2.4.0 Release
+#### 2.4.0
+- [Fix] Fixed a bug that prevented Epoch players from entering vehicles.
+
+#### 2.4.0
 - [New] Vests have been added to the customization options.
 - [New] Backpacks have been added to the customization options.
 - [New] Sarge AI now supports Desolation, Epoch and Exile mods and is determined by the class names of CfgMods.
@@ -14,7 +17,7 @@
 - [Bug] Static spawns are not working as expected and have been disabled for now.
 - [Bug] Headless client has been disabled to begin work on a more appropriate method.
 
-#### 2.3.1 Dev
+#### 2.3.1
 - [New] Vests have been added to the customization options.
 - [New] Backpacks have been added to the customization options.
 - [Change] Error messages have been redone to be more specific about what went wrong when spawning AI and generating gear.
