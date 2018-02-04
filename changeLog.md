@@ -1,3 +1,6 @@
+#### 2.4.4
+- [New] Added support for the BreakingPoint mod.
+
 #### 2.4.3
 - [Fix] Fixed a bug that prevented Epoch players from entering vehicles.
 
