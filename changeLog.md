@@ -1,3 +1,6 @@
+#### 2.5.5
+- [Fix] Changed bandit unit model to Opfor unit to fix issue causing bandits not to be hostile.
+
 #### 2.4.4
 - [New] Added support for the BreakingPoint mod.
 
