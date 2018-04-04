@@ -22,7 +22,7 @@ private ["_SAR_supportedMaps","_config","_modConfigs","_modPatches","_modName","
 
 scopeName "Main";
 
-_SAR_version = "2.4.4";
+_SAR_version = "2.4.5";
 
 diag_log format ["Sarge's AI System: Welcome to Sarge AI!"];
 diag_log format ["Sarge's AI System: Now initializing Sarge AI version %1 for %2",_SAR_version,worldName];
